@@ -43,8 +43,8 @@ This project is open source and available under the [MIT License](LICENSE.md).
 For any queries or discussions regarding the project, please open an issue in the repository.
 
 ## Acknowledgments
-- Data provided by [Yahoo Finance](https://finance.yahoo.com/) via the `yfinance` library.
-- S&P 500 company list sourced from the publicly available dataset on GitHub.
+- Data provided by [Yahoo Finance](https://finance.yahoo.com/) via the `yfinance` library ([GitHub Repo](https://github.com/ranaroussi/yfinance)).
+- S&P 500 company list sourced from the publicly available dataset on GitHub, provided by Rufus Pollock and the Open Knowledge Foundation ([GitHub Repo](https://github.com/datasets/s-and-p-500-companies/)).
 
 ---
 
