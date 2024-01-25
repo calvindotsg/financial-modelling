@@ -31,6 +31,7 @@ def create_custom_session() -> CachedLimiterSession:
     )
     return session
 
+
 # Define a Pydantic model for the stock price data
 class StockPriceData(BaseModel):
     date: str
@@ -48,14 +49,43 @@ class StockData(BaseModel):
 
 
 def fetch_stock_info(ticker: str, session: Session) -> yf.Ticker:
+    """
+    Fetch stock information for the given ticker using a custom requests session.
+
+    Parameters:
+    ticker (str): The stock ticker symbol.
+    session (Session): The custom requests session.
+
+    Returns:
+    yf.Ticker: The stock information.
+    """
     return yf.Ticker(ticker, session=session)
 
 
 def get_stock_price(stock_info: yf.Ticker, period: str) -> pl.DataFrame:
+    """
+    Get stock price data for the given stock information and period.
+
+    Parameters:
+    stock_info (yf.Ticker): The stock information.
+    period (str): The period for which to retrieve the stock data.
+
+    Returns:
+    pl.DataFrame: The stock price data.
+    """
     return stock_info.history(period=period)
 
 
 def clean_stock_price(stock_price: pl.DataFrame) -> pl.DataFrame:
+    """
+    Clean the stock price data.
+
+    Parameters:
+    stock_price (pl.DataFrame): The raw stock price data.
+
+    Returns:
+    pl.DataFrame: The cleaned stock price data.
+    """
     stock_price_clean = stock_price.loc[:, ["Close"]]
     stock_price_clean["closing_price"] = stock_price_clean["Close"]
     stock_price_clean["date"] = stock_price_clean.index.strftime("%Y-%m-%d %H:%M:%S%z")
@@ -74,6 +104,16 @@ def clean_stock_price(stock_price: pl.DataFrame) -> pl.DataFrame:
 
 
 def get_stock_data(ticker: str, period: str) -> StockData:
+    """
+    Get stock data for the given ticker and period.
+
+    Parameters:
+    ticker (str): The stock ticker symbol.
+    period (str): The period for which to retrieve the stock data.
+
+    Returns:
+    StockData: The stock data.
+    """
     session = create_custom_session()
     stock_info = fetch_stock_info(ticker, session)
     stock_price = get_stock_price(stock_info, period)
@@ -82,6 +122,7 @@ def get_stock_data(ticker: str, period: str) -> StockData:
         StockPriceData(**data) for data in stock_price_clean.to_dict("records")
     ]
     return StockData(ticker=ticker, stock_price_data=stock_price_data)
+
 
 def read_ticker_symbols(file_path, ticker_column):
     """
@@ -104,6 +145,7 @@ def read_ticker_symbols(file_path, ticker_column):
     ticker_symbols = df[ticker_column].to_list()
 
     return ticker_symbols
+
 
 if __name__ == "__main__":
     # Read the ticker symbols from the CSV file
