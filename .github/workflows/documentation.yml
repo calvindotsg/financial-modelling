@@ -27,4 +27,4 @@ jobs:
           force_orphan: true
       - name: Add CNAME for custom domain
         run: |
-          echo 'model.calvin.sg' > ./build/CNAME
+          echo 'model.calvin.sg' > CNAME
