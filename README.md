@@ -1,4 +1,16 @@
-# Stock History Analysis
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <h1 align="center">Stock History Analysis</h1>
+</p>
+<!-- PROJECT LOGO -->
+
+[![GitHub stars](https://img.shields.io/github/stars/calvindotsg/financial-modelling)](./financial-modelling/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/calvindotsg/financial-modelling)](./financial-modelling/network)
+[![GitHub issues](https://img.shields.io/github/issues/calvindotsg/financial-modelling)](./financial-modelling/issues)
+[![GitHub license](https://img.shields.io/github/license/calvindotsg/financial-modelling)](./financial-modelling/blob/master/LICENSE)
+
+![Project banner](images/project_banner.jpeg)
 
 ## Overview
 The Stock History Analysis project aims to determine the preferred portfolio composition from constituents within the S&P 500 index. This is achieved by analyzing historical stock data using various technical analysis models. The project is currently in its initial iteration and is a work in progress.
