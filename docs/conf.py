@@ -27,6 +27,7 @@ extensions = [
     'sphinx_design',
     'sphinx.ext.doctest',
     'sphinx.ext.autosummary',
+    'sphinxext.opengraph'
 ]
 
 templates_path = ['_templates']

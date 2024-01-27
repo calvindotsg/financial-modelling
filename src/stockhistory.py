@@ -92,7 +92,7 @@ def fetch_stock_info(ticker: str, session: Session) -> yf.Ticker:
         The custom requests session configured for fetching stock information.
 
     Returns
-    --------
+    -------
     yf.Ticker:
         The stock information.
 

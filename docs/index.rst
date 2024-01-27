@@ -6,7 +6,7 @@
 Welcome to financial-modelling's documentation!
 ===============================================
 
-.. include:: images/project_banner.jpeg
+.. image:: ../images/project_banner.jpeg
 
 Overview
 --------
