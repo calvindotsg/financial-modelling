@@ -17,12 +17,9 @@ jobs:
       - name: Sphinx build
         run: |
           sphinx-build docs _build
-      - name: Navigate to project root
-        run: |
-          cd $GITHUB_WORKSPACE; pwd;
       - name: Add CNAME for custom domain
         run: |
-          echo 'model.calvin.sg' > CNAME; ls -lrt;
+          echo 'model.calvin.sg' > ./build/CNAME
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
