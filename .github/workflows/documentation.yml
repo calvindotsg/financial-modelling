@@ -22,7 +22,7 @@ jobs:
           cd $GITHUB_WORKSPACE; pwd;
       - name: Add CNAME for custom domain
         run: |
-          echo 'model.calvin.sg' > CNAME
+          echo 'model.calvin.sg' > CNAME; ls -lrt;
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
