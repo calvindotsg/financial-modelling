@@ -19,7 +19,7 @@ jobs:
           sphinx-build docs _build
       - name: Navigate to project root
         run: |
-          cd $GITHUB_WORKSPACE
+          cd $GITHUB_WORKSPACE; pwd;
       - name: Add CNAME for custom domain
         run: |
           echo 'model.calvin.sg' > CNAME
