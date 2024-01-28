@@ -28,7 +28,7 @@ extensions = [
     'sphinx_design',
     'sphinx.ext.doctest',
     'sphinx.ext.autosummary',
-    'sphinxext.opengraph'
+    'sphinxext.opengraph', 'IPython.sphinxext.ipython_console_highlighting','IPython.sphinxext.ipython_directive',
 ]
 
 templates_path = ['_templates']
