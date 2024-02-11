@@ -1,10 +1,10 @@
 src package
 ===========
 
-src.stockhistory module
------------------------
+src.main.application module
+---------------------------
 
-.. automodule:: src.stockhistory
+.. automodule:: src.main.application
    :members:
    :undoc-members:
    :show-inheritance:

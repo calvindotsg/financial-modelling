@@ -263,7 +263,7 @@ def read_ticker_symbols(file_path, ticker_column):
 if __name__ == "__main__":
     # Read the ticker symbols from the CSV file
     # path = 'https://raw.githubusercontent.com/datasets/s-and-p-500-companies/main/data/constituents.csv'
-    path = "../data/test.csv"
+    path = "../../data/test.csv"
     ticker_symbols = read_ticker_symbols(file_path=path, ticker_column="Symbol")
     print(ticker_symbols)
 

@@ -53,8 +53,8 @@ To use this project, you can install it using the following steps:
 
       pip install -r requirements.txt
 
-Usage
------
+Getting started
+---------------
 
 To run the project, execute the main script `stock-history.py` located in the project root directory:
 
@@ -63,6 +63,58 @@ To run the project, execute the main script `stock-history.py` located in the pr
    python stock-history.py
 
 This will initiate the analysis and provide insights into the preferred portfolio composition based on historical stock data.
+
+Project Structure Summary
+-------------------------
+
+This repository follows a well-organized structure to enhance maintainability, modularity, and ease of collaboration. The key components include:
+
+Source Code (`src/`)
+~~~~~~~~~~~~~~~~~~~~
+
+- `main/`: Contains the main application logic.
+- `data_models/`: Houses Pydantic data models.
+- `helpers/`: Stores helper functions.
+- `tests/`: Includes unit tests for application logic, data models, and helper functions.
+
+Configuration (`config/`)
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- `app_config.py`: Centralized configuration file for application settings.
+
+Documentation (`docs/`)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+- `conf.py`: Sphinx configuration file.
+- `index.rst`: Main documentation file.
+- `_static/`: Folder for static files used in documentation.
+- `_templates/`: Folder for custom templates if needed.
+
+Images (`images/`)
+~~~~~~~~~~~~~~~~~~
+
+- Stores images used in documentation.
+
+Notebooks (`notebooks/`)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Contains Jupyter notebooks for analysis or experimentation.
+
+Data (`data/`)
+~~~~~~~~~~~~~~
+
+- Houses data sources, such as CSV files.
+
+Tests (`tests/`)
+~~~~~~~~~~~~~~~~
+
+- `test_integration.py`: Integration tests.
+- Other test files organized by functionality.
+
+Requirements (`requirements.txt`)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Lists project dependencies.
 
 Contributing
 ------------

@@ -1,4 +1,5 @@
 ipython
+matplotlib
 myst_parser
 numpydoc
 numpydoc
@@ -10,7 +11,7 @@ requests_cache
 requests_ratelimiter
 sphinx
 sphinx-copybutton
-sphinx-design
+sphinx_design
 sphinx_rtd_theme
 sphinxext-opengraph
 yfinance

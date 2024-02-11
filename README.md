@@ -15,9 +15,6 @@
 ## Overview
 The Stock History Analysis project aims to determine the preferred portfolio composition from constituents within the S&P 500 index. This is achieved by analyzing historical stock data using various technical analysis models. The project is currently in its initial iteration and is a work in progress.
 
-## Project Structure
-The project is structured as a Jupyter notebook (`stock-history.ipynb`) containing the necessary code to fetch, process, and analyze stock data. The notebook is divided into several cells, each performing specific tasks as part of the overall analysis.
-
 ### Key Components
 - **Library Imports**: Essential libraries such as `yfinance`, `pandas`, and `json` are imported to handle data retrieval, manipulation, and storage.
 - **Data Retrieval**: The `get_stock_data` function fetches historical stock data for a given ticker and period using the `yfinance` library.
@@ -31,11 +28,11 @@ The primary objective of this iteration is to:
 - Calculate key financial metrics that will serve as inputs for technical analysis models.
 - Prepare the groundwork for integrating various technical analysis models in future iterations.
 
-## Usage
+## Getting started
 To use this project, follow these steps:
 1. Ensure you have Jupyter Notebook or JupyterLab installed.
 2. Clone the repository and navigate to the project directory.
-3. Open the `stock-history.ipynb` notebook.
+3. Open the `notebooks/stock-history.ipynb` notebook.
 4. Run the cells in sequence to perform the analysis.
 
 ## Future Work
@@ -44,6 +41,49 @@ The next steps for this project include:
 - Optimization of portfolio composition based on historical performance and technical indicators.
 - Development of a user interface to interact with the analysis results.
 - Expansion of the dataset to include additional financial metrics and a broader range of stocks.
+
+## Project Structure Summary
+
+This repository follows a well-organized structure to enhance maintainability, modularity, and ease of collaboration. The key components include:
+
+### 1. Source Code (`src/`)
+
+- `main/`: Contains the main application logic.
+- `data_models/`: Houses Pydantic data models.
+- `helpers/`: Stores helper functions.
+- `tests/`: TODO: Includes unit tests for application logic, data models, and helper functions.
+
+### 2. Configuration (`config/`)
+
+- `app_config.py`: TODO: Centralized configuration file for application settings.
+
+### 3. Documentation (`docs/`)
+
+- `conf.py`: Sphinx configuration file.
+- `index.rst`: Main documentation file.
+- `_static/`: Folder for static files used in documentation.
+- `_templates/`: Folder for custom templates if needed.
+
+### 4. Images (`images/`)
+
+- Stores images used in documentation.
+
+### 5. Notebooks (`notebooks/`)
+
+- Contains Jupyter notebooks for analysis or experimentation.
+
+### 6. Data (`data/`)
+
+- Houses data sources, such as CSV files.
+
+### 7. Tests (`tests/`)
+
+- `test_integration.py`: TODO: Integration tests.
+- Other test files organized by functionality.
+
+### 8. Requirements (`requirements.txt`)
+
+- Lists project dependencies.
 
 ## Contributions
 Contributions are welcome. If you would like to contribute to the project, please fork the repository and submit a pull request with your proposed changes.
