@@ -1,11 +1,18 @@
 src package
 ===========
 
-src.main.application module
----------------------------
+Subpackages
+-----------
 
-.. automodule:: src.main.application
+.. toctree::
+   :maxdepth: 4
+
+   src.main
+
+Module contents
+---------------
+
+.. automodule:: src
    :members:
    :undoc-members:
    :show-inheritance:
-
