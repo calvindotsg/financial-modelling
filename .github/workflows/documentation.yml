@@ -9,8 +9,10 @@ jobs:
   docs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3.11
-      - uses: actions/setup-python@v3.11
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
+        with:
+          python-version: '3.11'
       - name: Install dependencies
         run: |
           pip install ipython matplotlib myst_parser numpydoc numpydoc openbb pandas polars pydantic pyrate_limiter python-decouple requests requests_cache requests_ratelimiter sphinx sphinx-copybutton sphinx-design sphinx_rtd_theme sphinxext-opengraph
@@ -21,7 +23,7 @@ jobs:
         run: |
           echo 'model.calvin.sg' > ./_build/CNAME
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3.11
+        uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         with:
           publish_branch: gh-pages
