@@ -10,17 +10,6 @@ Subpackages
    src.main.data_models
    src.main.helpers
 
-Submodules
-----------
-
-src.main.app module
--------------------
-
-.. automodule:: src.main.app
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 Module contents
 ---------------
 
