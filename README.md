@@ -85,11 +85,22 @@ This repository follows a well-organized structure to enhance maintainability, m
 
 - Lists project dependencies.
 
-## Contributions
-Contributions are welcome. If you would like to contribute to the project, please fork the repository and submit a pull request with your proposed changes.
+## Attribution and Citation
+
+```bibtex
+@misc{Loh_Zhang_2024,
+  title={calvindotsg/Financial-modelling: Determine the preferred portfolio composition from constituents within the S&P 500 index},
+  author={Loh, Calvin and Zhang, Genevieve},
+  year={2024},
+  url={https://github.com/calvindotsg/financial-modelling/},
+}
+```
 
 ## License
-This project is open source and available under the [MIT License](LICENSE.md).
+This project is available under the [CC-BY-SA-4.0 License](LICENSE.md). This license enables reusers to distribute, remix, adapt, and build upon the material in any medium or format, so long as attribution is given to the creator. The license allows for commercial use. If you remix, adapt, or build upon the material, you must license the modified material under identical terms.
+
+## Contributions
+Contributions are welcome. If you would like to contribute to the project, please fork the repository and submit a pull request with your proposed changes.
 
 ## Contact
 For any queries or discussions regarding the project, please open an issue in the repository.
