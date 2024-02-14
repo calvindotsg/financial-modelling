@@ -17,21 +17,30 @@
 ## Overview
 The Stock History Analysis project aims to determine the preferred portfolio composition from constituents within the S&P 500 index. This is achieved by analyzing historical stock data using various technical analysis models. The project is currently in its initial iteration and is a work in progress.
 
-### Key Components
-- **Library Imports**: Essential libraries such as `yfinance`, `pandas`, and `json` are imported to handle data retrieval, manipulation, and storage.
-- **Data Retrieval**: The `get_stock_data` function fetches historical stock data for a given ticker and period using the `yfinance` library.
-- **Data Processing**: The retrieved data is cleaned and processed to calculate various metrics like closing price, percentage change, holding period yield, holding period return, and portfolio value assuming an initial investment of $1000.
-- **Ticker Symbol Reading**: The `read_ticker_symbols` function reads ticker symbols from a CSV file, which allows for batch processing of multiple stocks.
-- **Main Execution**: The main block of the notebook orchestrates the reading of ticker symbols and the retrieval of stock data for each symbol. The results are then appended to a list and printed in JSON format.
-
 ## Objectives
 The primary objective of this iteration is to:
 - Retrieve and clean historical stock data for analysis.
 - Calculate key financial metrics that will serve as inputs for technical analysis models.
+- Store historical stock price data with a suitable schema in Google Firestore document database.
 - Prepare the groundwork for integrating various technical analysis models in future iterations.
+
+### Key Components
+The key implementation and rationale of the financial-modelling project are:
+- **Data Retrieval from stock data source**: The `get_stock_data` function fetches historical stock data for a given ticker and period using the `OpenBB` library from `yfinance` data source.
+- **Data Retrieval from Firestore document database**: Determine the most recent stock price data stored in database, to update with up to date data from stock data source.
+- **Firestore document database schema**: Each ticker symbols is stored in a separate Firestore collection. Each collection contains documents of stock price data, with ISO 8601 date string as document id and fields storing stock price data.
+- **Data Processing**: The retrieved data is cleaned and processed to calculate various metrics like closing price, percentage change, holding period yield, holding period return, and portfolio value assuming an initial investment of $1000.
+- **Main Execution**: The main block of the notebook orchestrates the reading of ticker symbols and the retrieval of stock data for each symbol. The results are then appended to a list and printed in JSON format.
 
 ## Getting started
 To use this project, follow these steps:
+1. Clone the GitHub repository to your local machine using `git clone https://github.com/calvindotsg/financial-modelling.git`.
+2. Create a Python virtual environment for this project using `python -m venv venv` and activate it using `source venv/bin/activate` (Linux/Mac) or `venv\Scripts\activate` (Windows).
+3. Provide environment variables in the `./.env` file in your project directory. You can use the `./.env.example` file as a template. Make sure to include Firebase service account key file in the `./env` folder.
+4. Install the required dependencies as per the `requirements.txt` file using `pip install -r requirements.txt`.
+5. To run the project, execute the main script `python app.py`, in the following path `src/main/app.py`. This will initiate the analysis and provide insights into the preferred portfolio composition based on historical stock data.
+
+To access accompanying Jupyter Notebook in this project, follow these steps:
 1. Ensure you have Jupyter Notebook or JupyterLab installed.
 2. Clone the repository and navigate to the project directory.
 3. Open the `notebooks/stock-history.ipynb` notebook.
@@ -63,8 +72,6 @@ This repository follows a well-organized structure to enhance maintainability, m
 
 - `conf.py`: Sphinx configuration file.
 - `index.rst`: Main documentation file.
-- `_static/`: Folder for static files used in documentation.
-- `_templates/`: Folder for custom templates if needed.
 
 ### 4. Images (`images/`)
 
@@ -87,12 +94,16 @@ This repository follows a well-organized structure to enhance maintainability, m
 
 - Lists project dependencies.
 
+### 9. Environment files (`env/`)
+
+- Service account credential JSON files
+
 ## Attribution and Citation
 
 ```bibtex
-@misc{Loh_Zhang_2024,
+@misc{Loh_Zeyrek_2024,
   title={calvindotsg/Financial-modelling: Determine the preferred portfolio composition from constituents within the S&P 500 index},
-  author={Loh, Calvin and Zhang, Genevieve},
+  author={Loh, Calvin and Zeyrek, Genevieve},
   year={2024},
   url={https://github.com/calvindotsg/financial-modelling/},
 }
@@ -101,16 +112,16 @@ This repository follows a well-organized structure to enhance maintainability, m
 ## License
 This project is available under the [CC-BY-SA-4.0 License](LICENSE.md). This license enables reusers to distribute, remix, adapt, and build upon the material in any medium or format, so long as attribution is given to the creator. The license allows for commercial use. If you remix, adapt, or build upon the material, you must license the modified material under identical terms.
 
-## Contributions
+## Contributing
 Contributions are welcome. If you would like to contribute to the project, please fork the repository and submit a pull request with your proposed changes.
 
 ## Contact
 For any queries or discussions regarding the project, please open an issue in the repository.
 
 ## Acknowledgments
-- Data provided by [Yahoo Finance](https://finance.yahoo.com/) via the `yfinance` library ([GitHub Repo](https://github.com/ranaroussi/yfinance)).
+- Data provided by [Yahoo Finance](https://finance.yahoo.com/) via the `OpenBB platform` library with `yfinance` extension ([OpenBB Platform documentation](https://docs.openbb.co/platform)).
 - S&P 500 company list sourced from the publicly available dataset on GitHub, provided by Rufus Pollock and the Open Knowledge Foundation ([GitHub Repo](https://github.com/datasets/s-and-p-500-companies/)).
 
 ---
 
-**Note**: This project is in the early stages of development and is subject to significant changes. The current functionality is limited to data retrieval and preliminary processing. Users should be aware that the analysis models are not yet implemented, and the results should not be used for actual trading or investment decisions.
+**Disclaimer**: This project is in the early stages of development and is subject to significant changes. The current functionality is limited to data retrieval and preliminary processing. Users should be aware that the analysis models are not yet implemented, and the results should not be used for actual trading or investment decisions.

@@ -7,8 +7,8 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'financial-modelling'
-copyright = '2024, Calvin, Genevieve'
-author = 'Calvin, Genevieve'
+copyright = '2024, Loh, Calvin and Zeyrek, Genevieve'
+author = 'Loh, Calvin and Zeyrek, Genevieve'
 release = '0.1'
 
 # -- General configuration ---------------------------------------------------

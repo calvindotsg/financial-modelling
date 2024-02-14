@@ -26,6 +26,11 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
+Overview
+--------
+
+The Stock History Analysis project aims to determine the preferred portfolio composition from constituents within the S&P 500 index. This is achieved by analyzing historical stock data using various technical analysis models. The project is currently in its initial iteration and is a work in progress.
+
 Objectives
 ----------
 
@@ -33,10 +38,23 @@ The primary objectives of the financial-modelling project are:
 
 - Retrieve and clean historical stock data for analysis.
 - Calculate key financial metrics that will serve as inputs for technical analysis models.
+- Store historical stock price data with a suitable schema in Google Firestore document database.
 - Prepare the groundwork for integrating various technical analysis models in future iterations.
 
-Installation
-------------
+Key Components
+--------------
+
+The key implementation and rationale of the financial-modelling project are:
+
+- Data Retrieval from stock data source: The `get_stock_data` function fetches historical stock data for a given ticker and period using the `OpenBB` library from `yfinance` data source.
+- Data Retrieval from Firestore document database: Determine the most recent stock price data stored in database, to update with up to date data from stock data source.
+- Firestore document database schema: Each ticker symbols is stored in a separate Firestore collection. Each collection contains documents of stock price data, with ISO 8601 date string as document id and fields storing stock price data.
+- Data Processing: The retrieved data is cleaned and processed to calculate various metrics like closing price, percentage change, holding period yield, holding period return, and portfolio value assuming an initial investment of $1000.
+- Main Execution: The main block of the notebook orchestrates the reading of ticker symbols and the retrieval of stock data for each symbol. The results are then appended to a list and printed in JSON format.
+
+
+Getting started
+---------------
 
 To use this project, you can install it using the following steps:
 
@@ -44,25 +62,47 @@ To use this project, you can install it using the following steps:
 
    .. code-block:: shell
 
-      git clone https://github.com/your-username/financial-modelling.git
+      git clone https://github.com/calvindotsg/financial-modelling.git
       cd financial-modelling
 
-2. Install the required dependencies:
+2. Create a Python virtual environment for this project and and activate it:
+
+   .. code-block:: shell
+
+      python -m venv venv
+      source venv/bin/activate
+
+3. Provide environment variables in the ./.env file in your project directory. You can use the ./.env.example file as a template. Make sure to include Firebase service account key file in the ./env folder
+
+4. Install the required dependencies:
 
    .. code-block:: shell
 
       pip install -r requirements.txt
 
-Getting started
----------------
+5. To run the project, execute the main script `app.py`, in the following path `src/main/app.py`
 
-To run the project, execute the main script `stock-history.py` located in the project root directory:
+   .. code-block:: shell
 
-.. code-block:: shell
+      python app.py
 
-   python stock-history.py
+   This will initiate the analysis and provide insights into the preferred portfolio composition based on historical stock data.
 
-This will initiate the analysis and provide insights into the preferred portfolio composition based on historical stock data.
+To access accompanying Jupyter Notebook in this project, follow these steps:
+
+1. Ensure you have Jupyter Notebook or JupyterLab installed.
+2. Clone the repository and navigate to the project directory.
+3. Open the `notebooks/stock-history.ipynb` notebook.
+4. Run the cells in sequence to perform the analysis.
+
+Future Work
+-----------
+The next steps for this project include:
+
+- Integration of technical analysis models to evaluate stock performance.
+- Optimization of portfolio composition based on historical performance and technical indicators.
+- Development of a user interface to interact with the analysis results.
+- Expansion of the dataset to include additional financial metrics and a broader range of stocks.
 
 Project Structure Summary
 -------------------------
@@ -75,7 +115,7 @@ Source Code (`src/`)
 - `main/`: Contains the main application logic.
 - `data_models/`: Houses Pydantic data models.
 - `helpers/`: Stores helper functions.
-- `tests/`: Includes unit tests for application logic, data models, and helper functions.
+- `tests/`: TODO: Includes unit tests for application logic, data models, and helper functions.
 
 Configuration (`config/`)
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -87,8 +127,6 @@ Documentation (`docs/`)
 
 - `conf.py`: Sphinx configuration file.
 - `index.rst`: Main documentation file.
-- `_static/`: Folder for static files used in documentation.
-- `_templates/`: Folder for custom templates if needed.
 
 Images (`images/`)
 ~~~~~~~~~~~~~~~~~~
@@ -116,18 +154,52 @@ Requirements (`requirements.txt`)
 
 - Lists project dependencies.
 
+Environment files (`env/`)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Service account credential JSON files
+
+Attribution and Citation
+------------------------
+
+.. code-block:: bibtex
+
+   @misc{Loh_Zeyrek_2024,
+     title={calvindotsg/Financial-modelling: Determine the preferred portfolio composition from constituents within the S&P 500 index},
+     author={Loh, Calvin and Zeyrek, Genevieve},
+     year={2024},
+     url={https://github.com/calvindotsg/financial-modelling/},
+   }
+
+License
+-------
+
+This project is available under the CC-BY-SA-4.0 License, see the `License` file for more details. This license enables reusers to distribute, remix, adapt, and build upon the material in any medium or format, so long as attribution is given to the creator. The license allows for commercial use. If you remix, adapt, or build upon the material, you must license the modified material under identical terms.
+
 Contributing
 ------------
 
 If you'd like to contribute to the project, please follow the guidelines in the `CONTRIBUTING.md` file.
 
-License
+Contact
 -------
 
-This project is licensed under the MIT License - see the `LICENSE` file for details.
+For any queries or discussions regarding the project, please open an issue in the repository.
 
-References
+
+Acknowledgments
+---------------
+
+- Data provided by Yahoo Finance via the `OpenBB platform` library with `yfinance` extension.
+- S&P 500 company list sourced from the publicly available dataset on GitHub, provided by Rufus Pollock and the Open Knowledge Foundation.
+
+Disclaimer
 ----------
 
-- `Project Repository <https://github.com/your-username/financial-modelling>`_
-- `Issue Tracker <https://github.com/your-username/financial-modelling/issues>`_
+This project is in the early stages of development and is subject to significant changes. The current functionality is limited to data retrieval and preliminary processing. Users should be aware that the analysis models are not yet implemented, and the results should not be used for actual trading or investment decisions.
+
+Project links
+-------------
+
+- `GitHub Project Repository financial-modelling <https://github.com/calvindotsg/financial-modelling>`_
+- `Issue Tracker <https://github.com/calvindotsg/financial-modelling/issues>`_
