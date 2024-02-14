@@ -17,8 +17,13 @@ jobs:
         run: |
           pip install firebase-admin ipython matplotlib myst_parser numpydoc openbb pandas polars pydantic pyrate_limiter python-decouple sphinx sphinx-copybutton sphinx-design sphinx_rtd_theme sphinxext-opengraph
       - name: Add Environment secrets
+        env:
+          MODELLING_101_FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.MODELLING_101_FIREBASE_SERVICE_ACCOUNT_JSON }}
+          DATA_PROVIDER: ${{ secrets.DATA_PROVIDER }}
+          TICKER_SYMBOLS_LIST: ${{ secrets.TICKER_SYMBOLS_LIST }}
+          FIRESTORE_SERVICE_ACCOUNT: ${{ secrets.FIRESTORE_SERVICE_ACCOUNT }}
         run: |
-          mkdir env; touch ./env/modelling-101.json; touch ./.env; echo ${{ secrets.MODELLING_101_FIREBASE_SERVICE_ACCOUNT_JSON }} > ./env/modelling-101.json; echo 'DATA_PROVIDER = "${{ secrets.DATA_PROVIDER }}"\nTICKER_SYMBOLS_LIST = "${{ secrets.TICKER_SYMBOLS_LIST }}"\nFIRESTORE_SERVICE_ACCOUNT = "${{ secrets.FIRESTORE_SERVICE_ACCOUNT }}"' > ./.env;
+          mkdir env; touch ./env/modelling-101.json; touch ./.env; echo "$MODELLING_101_FIREBASE_SERVICE_ACCOUNT_JSON" > ./env/modelling-101.json; echo 'DATA_PROVIDER = ""$DATA_PROVIDER""\nTICKER_SYMBOLS_LIST = ""$TICKER_SYMBOLS_LIST""\nFIRESTORE_SERVICE_ACCOUNT = ""$FIRESTORE_SERVICE_ACCOUNT""' > ./.env;
       - name: Sphinx build
         run: |
           sphinx-build docs _build
