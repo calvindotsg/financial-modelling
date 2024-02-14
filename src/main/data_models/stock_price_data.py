@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional, List
+from typing import Optional
 from openbb import obb
 
 import pandas as pd
@@ -13,6 +13,21 @@ class StockPriceData(BaseModel):
     holding_period_yield: Optional[float]
     holding_period_return: Optional[float]
     portfolio_of_1000: Optional[float]
+
+    def validation(self):
+        # TODO: Validate the data types and formats
+        # Raise an exception if any validation fails
+        # For example, check if the date is a valid ISO 8601 string
+        pass
+
+    def convert(self):
+        # TODO: Convert the data types and formats as needed
+        # For example, convert the date string to a datetime object
+        pass
+
+    def to_dict(self):
+        # Return a dictionary representation of the object
+        return vars(self)
 
 
 # Define a Pydantic model for the stock data
@@ -28,7 +43,7 @@ class StockData(BaseModel):
 
     """
     ticker: str
-    stock_price_data: List[StockPriceData]
+    stock_price_data: list[StockPriceData]
 
 
 def get_stock_data(symbol: str, provider: str, start_date: str, interval: str) -> StockData:
@@ -106,4 +121,3 @@ def clean_stock_price(stock_price: pd.DataFrame) -> pd.DataFrame:
     )
     stock_price_clean.index = pd.to_datetime(stock_price_clean.index).strftime("%Y-%m-%d %H:%M:%S%z")
     return stock_price_clean
-

@@ -1,6 +1,7 @@
 import polars as pl
 
-def read_ticker_symbols(file_path, ticker_column):
+
+def read_ticker_symbols(file_path: str, ticker_column: str) -> list:
     """
     Read ticker symbols from a CSV file.
 
@@ -37,6 +38,6 @@ def read_ticker_symbols(file_path, ticker_column):
     df = df.collect()
 
     # Extract the ticker symbols
-    ticker_symbols = df[ticker_column].to_list()
+    ticker_symbols: list = df[ticker_column].to_list()
 
     return ticker_symbols
