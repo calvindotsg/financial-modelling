@@ -4,6 +4,22 @@ src.main.helpers package
 Submodules
 ----------
 
+src.main.helpers.firestore\_init module
+---------------------------------------
+
+.. automodule:: src.main.helpers.firestore_init
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+src.main.helpers.firestore\_update module
+-----------------------------------------
+
+.. automodule:: src.main.helpers.firestore_update
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 src.main.helpers.read\_csv module
 ---------------------------------
 
