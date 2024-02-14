@@ -15,7 +15,7 @@ jobs:
           python-version: '3.11'
       - name: Install dependencies
         run: |
-          pip install ipython matplotlib myst_parser numpydoc numpydoc openbb pandas polars pydantic pyrate_limiter python-decouple requests requests_cache requests_ratelimiter sphinx sphinx-copybutton sphinx-design sphinx_rtd_theme sphinxext-opengraph
+          pip install firebase-admin ipython matplotlib myst_parser numpydoc openbb pandas polars pydantic pyrate_limiter python-decouple sphinx sphinx-copybutton sphinx-design sphinx_rtd_theme sphinxext-opengraph
       - name: Sphinx build
         run: |
           sphinx-build docs _build
