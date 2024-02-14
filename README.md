@@ -12,9 +12,11 @@
 [![GitHub forks](https://img.shields.io/github/forks/calvindotsg/financial-modelling)](https://github.com/calvindotsg/financial-modelling/forks)
 
 
-![Project banner](images/project_banner.jpeg)
+[![Project banner](images/project_banner.jpeg)](https://model.calvin.sg)
 
 ## Overview
+Project documentation: https://model.calvin.sg
+
 The Stock History Analysis project aims to determine the preferred portfolio composition from constituents within the S&P 500 index. This is achieved by analyzing historical stock data using various technical analysis models. The project is currently in its initial iteration and is a work in progress.
 
 ## Objectives
@@ -119,8 +121,8 @@ Contributions are welcome. If you would like to contribute to the project, pleas
 For any queries or discussions regarding the project, please open an issue in the repository.
 
 ## Acknowledgments
-- Data provided by [Yahoo Finance](https://finance.yahoo.com/) via the `OpenBB platform` library with `yfinance` extension ([OpenBB Platform documentation](https://docs.openbb.co/platform)).
-- S&P 500 company list sourced from the publicly available dataset on GitHub, provided by Rufus Pollock and the Open Knowledge Foundation ([GitHub Repo](https://github.com/datasets/s-and-p-500-companies/)).
+- Data provided by [Yahoo Finance](https://finance.yahoo.com/) via the `OpenBB platform` library with `yfinance` extension, ([OpenBB Platform documentation](https://docs.openbb.co/platform)).
+- S&P 500 company list sourced from the publicly available dataset on GitHub, provided by Rufus Pollock and the Open Knowledge Foundation, ([GitHub Repo](https://github.com/datasets/s-and-p-500-companies/)).
 
 ---
 

@@ -174,7 +174,7 @@ Attribution and Citation
 License
 -------
 
-This project is available under the CC-BY-SA-4.0 License, see the `License` file for more details. This license enables reusers to distribute, remix, adapt, and build upon the material in any medium or format, so long as attribution is given to the creator. The license allows for commercial use. If you remix, adapt, or build upon the material, you must license the modified material under identical terms.
+This project is available under the `CC-BY-SA-4.0 License <https://github.com/calvindotsg/financial-modelling/blob/main/LICENSE>`_. This license enables reusers to distribute, remix, adapt, and build upon the material in any medium or format, so long as attribution is given to the creator. The license allows for commercial use. If you remix, adapt, or build upon the material, you must license the modified material under identical terms.
 
 Contributing
 ------------
@@ -190,8 +190,8 @@ For any queries or discussions regarding the project, please open an issue in th
 Acknowledgments
 ---------------
 
-- Data provided by Yahoo Finance via the `OpenBB platform` library with `yfinance` extension.
-- S&P 500 company list sourced from the publicly available dataset on GitHub, provided by Rufus Pollock and the Open Knowledge Foundation.
+- Data provided by `Yahoo Finance <https://finance.yahoo.com/>`_ via the `OpenBB platform` library with `yfinance` extension, `OpenBB Platform documentation <https://docs.openbb.co/platform>`_.
+- S&P 500 company list sourced from the publicly available dataset on GitHub, provided by Rufus Pollock and the Open Knowledge Foundation, `GitHub repository: datasets/s-and-p-500-companies <https://github.com/datasets/s-and-p-500-companies/>`_.
 
 Disclaimer
 ----------
@@ -201,5 +201,5 @@ This project is in the early stages of development and is subject to significant
 Project links
 -------------
 
-- `GitHub Project Repository financial-modelling <https://github.com/calvindotsg/financial-modelling>`_
-- `Issue Tracker <https://github.com/calvindotsg/financial-modelling/issues>`_
+- `GitHub Project Repository: financial-modelling <https://github.com/calvindotsg/financial-modelling>`_
+- `GitHub Issue Tracker <https://github.com/calvindotsg/financial-modelling/issues>`_
