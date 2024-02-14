@@ -6,9 +6,11 @@
 <!-- PROJECT LOGO -->
 
 [![GitHub stars](https://img.shields.io/github/stars/calvindotsg/financial-modelling)](./financial-modelling/stargazers)
+[![GitHub license](https://img.shields.io/github/license/calvindotsg/financial-modelling)](./financial-modelling/LICENSE)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/calvindotsg/financial-modelling/documentation.yml)
+![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/w/calvindotsg/financial-modelling/main)
 [![GitHub forks](https://img.shields.io/github/forks/calvindotsg/financial-modelling)](./financial-modelling/network)
-[![GitHub issues](https://img.shields.io/github/issues/calvindotsg/financial-modelling)](./financial-modelling/issues)
-[![GitHub license](https://img.shields.io/github/license/calvindotsg/financial-modelling)](./financial-modelling/blob/master/LICENSE)
+
 
 ![Project banner](images/project_banner.jpeg)
 
