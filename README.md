@@ -68,7 +68,7 @@ This repository follows a well-organized structure to enhance maintainability, m
 
 ### 2. Configuration (`config/`)
 
-- `app_config.py`: TODO: Centralized configuration file for application settings.
+- `app_config.py`: Centralized configuration file for application settings.
 
 ### 3. Documentation (`docs/`)
 

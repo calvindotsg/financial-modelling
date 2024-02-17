@@ -1,9 +1,14 @@
-from helpers.read_csv import read_ticker_symbols
-from helpers.firestore_update import FirestoreDB, store_data
-from config.app_config import DATA_PROVIDER, TICKER_SYMBOLS_LIST
-from data_models.stock_price_data import get_stock_data, StockData
-
+"""
+This module fetches stock data for given ticker symbols and logs the data to a Firestore database. It uses helper
+functions to read ticker symbols from a CSV file, update a Firestore database, and get stock data from a data
+provider.
+"""
 import json
+
+from config.app_config import DATA_PROVIDER, TICKER_SYMBOLS_LIST
+from src.main.helpers.read_csv import read_ticker_symbols
+from src.main.helpers.firestore_update import FirestoreDB, store_data
+from src.main.data_models.stock_price_data import get_stock_data, StockData
 
 
 def fetch_stock_data(symbols) -> list[StockData]:

@@ -1,5 +1,9 @@
-from src.main.helpers.firestore_init import firestore_init
+"""
+This module provides functionality to interact with the Firestore database, including creating and updating
+collections and documents, as well as storing stock price data.
+"""
 from config.app_config import FIRESTORE_SERVICE_ACCOUNT
+from src.main.helpers.firestore_init import firestore_init
 from src.main.data_models.stock_price_data import StockData
 
 
@@ -57,8 +61,6 @@ class FirestoreDB:
             - The collection method of the firestore client object is used to create
               and return a collection reference with the given name.
         """
-        # Create a collection with the given name
-        # Return a reference to the collection
         return self.db.collection(name)
 
     def get_collection(self, name):
@@ -89,12 +91,10 @@ class FirestoreDB:
             - A try-except block is used to handle the possible exception raised if the
               collection does not exist.
         """
-        # Get a reference to the collection with the given name
-        # Return None if the collection does not exist
         try:
             return self.db.collection(name)
-        except:
-            return None
+        except ValueError as ve:
+            raise ValueError(f"Error getting collection {name}: {ve}") from ve
 
     def document(self, ticker, date):
         """
@@ -128,8 +128,8 @@ class FirestoreDB:
         """
         try:
             return self.db.document(f"{ticker}/{date}")
-        except:
-            return None
+        except ValueError as ve:
+            raise ValueError(f"Error getting document {ticker}/{date}: {ve}") from ve
 
     def create_document(self, collection, id, data):
         """
@@ -162,11 +162,9 @@ class FirestoreDB:
             - The set method of the document reference object is used to set the data
               of the document.
         """
-        # Create a document with the given id and data in the collection
-        # Return a reference to the document
         return collection.document(id).set(data)
 
-    def get_document(self, collection, id):
+    def get_document(self, collection, doc_id):
         """
         Get a reference to the document with the given id in the collection or None if it does not exist.
 
@@ -199,9 +197,9 @@ class FirestoreDB:
         # Get a reference to the document with the given id in the collection
         # Return None if the document does not exist
         try:
-            return collection.document(id)
-        except:
-            return None
+            return collection.document(doc_id)
+        except ValueError as ve:
+            raise ValueError(f"Error getting document {doc_id}: {ve}") from ve
 
     def update_document(self, document, data):
         """
@@ -230,8 +228,6 @@ class FirestoreDB:
             - The update method of the document reference object is used to update the
               data of the document and return a reference to the updated document.
         """
-        # Update the document with the given data
-        # Return a reference to the document
         return document.update(data)
 
 
