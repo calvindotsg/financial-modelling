@@ -101,7 +101,7 @@ This repository follows a well-organized structure to enhance maintainability, m
 - Service account credential JSON files
 
 ## Attribution and Citation
-
+How to cite, bibtex example:
 ```bibtex
 @misc{Loh_Zeyrek_2024,
   title={calvindotsg/Financial-modelling: Determine the preferred portfolio composition from constituents within the S&P 500 index},

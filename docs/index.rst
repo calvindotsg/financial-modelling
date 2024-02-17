@@ -162,6 +162,8 @@ Environment files (`env/`)
 Attribution and Citation
 ------------------------
 
+How to cite, bibtex example:
+
 .. code-block:: bibtex
 
    @misc{Loh_Zeyrek_2024,
