@@ -12,21 +12,6 @@ class FirestoreDB:
     ----------
     db: firestore.Client
         The firestore client object.
-
-    Methods
-    -------
-    create_collection(name)
-        Create a collection with the given name and return a reference to it.
-    get_collection(name)
-        Get a reference to the collection with the given name or None if it does not exist.
-    document(ticker, date)
-        Get a reference to the document with the given ticker and date or None if it does not exist.
-    create_document(collection, id, data)
-        Create a document with the given id and data in the collection and return a reference to it.
-    get_document(collection, id)
-        Get a reference to the document with the given id in the collection or None if it does not exist.
-    update_document(document, data)
-        Update the document with the given data and return a reference to it.
     """
 
     def __init__(self):
@@ -50,7 +35,7 @@ class FirestoreDB:
 
     def create_collection(self, name):
         """
-        Create a collection with the given name.
+        Create a collection with the given name and return a reference to it.
 
         Parameters
         ----------
@@ -78,7 +63,7 @@ class FirestoreDB:
 
     def get_collection(self, name):
         """
-        Get a reference to the collection with the given name.
+        Get a reference to the collection with the given name or None if it does not exist.
 
         Parameters
         ----------
@@ -113,7 +98,7 @@ class FirestoreDB:
 
     def document(self, ticker, date):
         """
-        Get a reference to the document with the given ticker and date.
+        Get a reference to the document with the given ticker and date or None if it does not exist.
 
         Parameters
         ----------
@@ -148,7 +133,7 @@ class FirestoreDB:
 
     def create_document(self, collection, id, data):
         """
-        Create a document with the given id and data in the collection.
+        Create a document with the given id and data in the collection and return a reference to it.
 
         Parameters
         ----------
@@ -183,7 +168,7 @@ class FirestoreDB:
 
     def get_document(self, collection, id):
         """
-        Get a reference to the document with the given id in the collection.
+        Get a reference to the document with the given id in the collection or None if it does not exist.
 
         Parameters
         ----------
@@ -220,7 +205,7 @@ class FirestoreDB:
 
     def update_document(self, document, data):
         """
-        Update the document with the given data.
+        Update the document with the given data and return a reference to it.
 
         Parameters
         ----------
