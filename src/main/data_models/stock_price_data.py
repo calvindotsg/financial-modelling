@@ -1,4 +1,4 @@
-from typing import Optional, Literal
+from typing_extensions import Optional, Literal
 from pydantic import BaseModel
 from openbb import obb
 
@@ -91,9 +91,9 @@ def get_stock_data(symbol: str,
 
     """
     stock_price: pd.DataFrame = obb.equity.price.historical(symbol=symbol, provider=provider, start_date=start_date,
-                                              interval=interval).to_df()
+                                                            interval=interval).to_df()
     stock_price_clean: pd.DataFrame = clean_stock_price(stock_price)
-    stock_price_data_dict: list[StockPriceData]  = [
+    stock_price_data_dict: list[StockPriceData] = [
         StockPriceData(**{str(k): v for k, v in data.items()}) for data in stock_price_clean.to_dict("records")
     ]
     stock_data: StockData = StockData(ticker=symbol, stock_price_data=stock_price_data_dict)
