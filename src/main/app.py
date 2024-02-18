@@ -46,10 +46,11 @@ def log_stock_data(ticker_list):
 
 if __name__ == "__main__":
     # Read the ticker symbols from the CSV file
-    ticker_symbols: list = read_ticker_symbols(file_path=TICKER_SYMBOLS_LIST, ticker_column="Symbol")
+    ticker_symbols: list[str] = list(read_ticker_symbols(file_path=TICKER_SYMBOLS_LIST,
+                                                         ticker_column="Symbol"))
     print(ticker_symbols)
 
-    stock_ticker_list: list[StockData] = fetch_stock_data(symbols=ticker_symbols)
+    stock_ticker_list: list[StockData] = list(fetch_stock_data(symbols=ticker_symbols))
     log_stock_data(stock_ticker_list)
 
     # Create a firestore database object
