@@ -1,4 +1,4 @@
-from typing_extensions import Optional, Literal
+from typing import Optional, Literal
 from pydantic import BaseModel
 from openbb import obb
 
@@ -70,7 +70,7 @@ def get_stock_data(symbol: str,
     ----------
     symbol: str
         The stock ticker symbol.
-    provider: str
+    provider: Literal['fmp', 'intrinio', 'polygon', 'tiingo', 'yfinance']
         The data provider.
     start_date: str
         The start date for the data retrieval in 'YYYY-MM-DD' format.

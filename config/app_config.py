@@ -1,4 +1,4 @@
-from typing_extensions import Literal, cast
+from typing import Literal, cast
 from decouple import config
 
 DATA_PROVIDER: Literal['fmp', 'intrinio', 'polygon', 'tiingo', 'yfinance'] \
