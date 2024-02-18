@@ -1,6 +1,3 @@
-"""
-Centralized configuration file for application settings.
-"""
 from typing import Literal, cast
 from decouple import config
 

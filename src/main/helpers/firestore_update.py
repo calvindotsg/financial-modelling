@@ -1,7 +1,3 @@
-"""
-This module provides functionality to interact with the Firestore database, including creating and updating
-collections and documents, as well as storing stock price data.
-"""
 from config.app_config import FIRESTORE_SERVICE_ACCOUNT
 from src.main.helpers.firestore_init import firestore_init
 from src.main.data_models.stock_price_data import StockData
@@ -131,7 +127,7 @@ class FirestoreDB:
         except ValueError as ve:
             raise ValueError(f"Error getting document {ticker}/{date}: {ve}") from ve
 
-    def create_document(self, collection, id, data):
+    def create_document(self, collection, doc_id, data):
         """
         Create a document with the given id and data in the collection and return a reference to it.
 
@@ -139,7 +135,7 @@ class FirestoreDB:
         ----------
         collection: firestore.CollectionReference
             A reference to the collection where the document will be created.
-        id: str
+        doc_id: str
             The id of the document to create.
         data: dict
             The data of the document to create.
@@ -162,7 +158,7 @@ class FirestoreDB:
             - The set method of the document reference object is used to set the data
               of the document.
         """
-        return collection.document(id).set(data)
+        return collection.document(doc_id).set(data)
 
     def get_document(self, collection, doc_id):
         """
@@ -172,7 +168,7 @@ class FirestoreDB:
         ----------
         collection: firestore.CollectionReference
             A reference to the collection where the document is located.
-        id: str
+        doc_id: str
             The id of the document to get.
 
         Returns

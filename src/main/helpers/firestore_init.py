@@ -1,6 +1,3 @@
-"""
-Initialise Firestore with service account key in environment variables.
-"""
 import firebase_admin
 from firebase_admin import credentials, firestore
 

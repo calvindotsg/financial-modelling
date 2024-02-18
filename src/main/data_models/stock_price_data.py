@@ -1,22 +1,3 @@
-"""
-Module for defining Pydantic models and functions related to stock price data.
-
-This module contains Pydantic models for representing stock price data and stock data, along with functions for
-retrieving and cleaning stock price data.
-
-The `StockPriceData` class defines a Pydantic model for individual stock price data, including fields for date,
-closing price, returns, holding period yield, holding period return, and portfolio value.
-
-The `StockData` class represents a Pydantic model for stock data, consisting of a stock ticker symbol and a list of
-associated stock price data.
-
-The `get_stock_data` function retrieves and processes stock data for a given symbol, provider, start date,
-and interval, returning a `StockData` instance containing the cleaned stock price data.
-
-The `clean_stock_price` function cleans the raw stock price data and enhances it with additional calculated metrics,
-such as returns, holding period yield, holding period return, and portfolio value based on a hypothetical initial
-investment of $1000.
-"""
 from typing import Optional, Literal
 from pydantic import BaseModel
 from openbb import obb
@@ -51,7 +32,8 @@ class StockPriceData(BaseModel):
         """
         TODO:Convert the data types and formats as needed.
 
-        This method is responsible for converting the data types and formats of the StockPriceData object as needed. For example, it can be used to convert the date string to a datetime object.
+        This method is responsible for converting the data types and formats of the StockPriceData object as needed.
+        For example, it can be used to convert the date string to a datetime object.
         """
         pass
 
@@ -78,7 +60,9 @@ class StockData(BaseModel):
     stock_price_data: list[StockPriceData]
 
 
-def get_stock_data(symbol: str, provider: Literal['fmp', 'intrinio', 'polygon', 'tiingo', 'yfinance'], start_date: str, interval: str) -> StockData:
+def get_stock_data(symbol: str,
+                   provider: Literal['fmp', 'intrinio', 'polygon', 'tiingo', 'yfinance'],
+                   start_date: str, interval: str) -> StockData:
     """
     Retrieves and processes stock data for a given symbol, provider, start date, and interval.
 

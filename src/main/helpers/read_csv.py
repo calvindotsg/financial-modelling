@@ -1,6 +1,3 @@
-"""
-Module for reading CSV files, like ticker symbols.
-"""
 import pandas as pd
 
 
