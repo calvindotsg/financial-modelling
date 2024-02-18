@@ -125,7 +125,8 @@ class FirestoreDB:
         except ValueError as ve:
             raise ValueError(f"Error getting document {ticker}/{date}: {ve}") from ve
 
-    def create_document(self, collection, doc_id, data):
+    @staticmethod
+    def create_document(collection, doc_id, data):
         """
         Create a document with the given id and data in the collection and return a reference to it.
 
@@ -158,7 +159,8 @@ class FirestoreDB:
         """
         return collection.document(doc_id).set(data)
 
-    def get_document(self, collection, doc_id):
+    @staticmethod
+    def get_document(collection, doc_id):
         """
         Get a reference to the document with the given id in the collection or None if it does not exist.
 
@@ -193,7 +195,8 @@ class FirestoreDB:
         except ValueError as ve:
             raise ValueError(f"Error getting document {doc_id}: {ve}") from ve
 
-    def update_document(self, document, data):
+    @staticmethod
+    def update_document(document, data):
         """
         Update the document with the given data and return a reference to it.
 
