@@ -1,9 +1,20 @@
+from enum import Enum
+
 from typing import Optional, Literal
 from pydantic import BaseModel
 from openbb import obb
 
 import pandas as pd
 
+class ProviderEnum(Enum):
+    """
+    Enumeration of data providers.
+    """
+    FMP: str = 'fmp'
+    INTRINIO: str = 'intrinio'
+    POLYGON: str = 'polygon'
+    TIINGO: str = 'tiingo'
+    YFINANCE: str = 'yfinance'
 
 # Define a Pydantic model for the stock price data
 class StockPriceData(BaseModel):
@@ -61,7 +72,7 @@ class StockData(BaseModel):
 
 
 def get_stock_data(symbol: str,
-                   provider: Literal['fmp', 'intrinio', 'polygon', 'tiingo', 'yfinance'],
+                   provider: Literal[ProviderEnum.FMP, ProviderEnum.INTRINIO, ProviderEnum.POLYGON, ProviderEnum.TIINGO, ProviderEnum.YFINANCE],
                    start_date: str, interval: str) -> StockData:
     """
     Retrieves and processes stock data for a given symbol, provider, start date, and interval.
@@ -70,7 +81,7 @@ def get_stock_data(symbol: str,
     ----------
     symbol: str
         The stock ticker symbol.
-    provider: Literal['fmp', 'intrinio', 'polygon', 'tiingo', 'yfinance']
+    provider: Literal[ProviderEnum.FMP, ProviderEnum.INTRINIO, ProviderEnum.POLYGON, ProviderEnum.TIINGO, ProviderEnum.YFINANCE]
         The data provider.
     start_date: str
         The start date for the data retrieval in 'YYYY-MM-DD' format.
