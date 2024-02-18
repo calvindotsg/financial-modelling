@@ -1,9 +1,8 @@
-from src.main.helpers.firestore_init import firestore_init
 from config.app_config import FIRESTORE_SERVICE_ACCOUNT
-from src.main.data_models.stock_price_data import StockData
+from src.main.helpers.firestore_init import firestore_init
+from src.main.data_models.stock_price_data import StockData, StockPriceData
 
 
-# Define the firestore database class
 class FirestoreDB:
     """
     A class to interact with the firestore database.
@@ -30,7 +29,6 @@ class FirestoreDB:
             - The FIRESTORE_SERVICE_ACCOUNT constant from the app config file is used
               to provide the service account credentials.
         """
-        # Initialize the firestore client
         self.db = firestore_init(FIRESTORE_SERVICE_ACCOUNT)
 
     def create_collection(self, name):
@@ -57,8 +55,6 @@ class FirestoreDB:
             - The collection method of the firestore client object is used to create
               and return a collection reference with the given name.
         """
-        # Create a collection with the given name
-        # Return a reference to the collection
         return self.db.collection(name)
 
     def get_collection(self, name):
@@ -89,12 +85,10 @@ class FirestoreDB:
             - A try-except block is used to handle the possible exception raised if the
               collection does not exist.
         """
-        # Get a reference to the collection with the given name
-        # Return None if the collection does not exist
         try:
             return self.db.collection(name)
-        except:
-            return None
+        except ValueError as ve:
+            raise ValueError(f"Error getting collection {name}: {ve}") from ve
 
     def document(self, ticker, date):
         """
@@ -128,10 +122,11 @@ class FirestoreDB:
         """
         try:
             return self.db.document(f"{ticker}/{date}")
-        except:
-            return None
+        except ValueError as ve:
+            raise ValueError(f"Error getting document {ticker}/{date}: {ve}") from ve
 
-    def create_document(self, collection, id, data):
+    @staticmethod
+    def create_document(collection, doc_id, data):
         """
         Create a document with the given id and data in the collection and return a reference to it.
 
@@ -139,7 +134,7 @@ class FirestoreDB:
         ----------
         collection: firestore.CollectionReference
             A reference to the collection where the document will be created.
-        id: str
+        doc_id: str
             The id of the document to create.
         data: dict
             The data of the document to create.
@@ -162,11 +157,10 @@ class FirestoreDB:
             - The set method of the document reference object is used to set the data
               of the document.
         """
-        # Create a document with the given id and data in the collection
-        # Return a reference to the document
-        return collection.document(id).set(data)
+        return collection.document(doc_id).set(data)
 
-    def get_document(self, collection, id):
+    @staticmethod
+    def get_document(collection, doc_id):
         """
         Get a reference to the document with the given id in the collection or None if it does not exist.
 
@@ -174,7 +168,7 @@ class FirestoreDB:
         ----------
         collection: firestore.CollectionReference
             A reference to the collection where the document is located.
-        id: str
+        doc_id: str
             The id of the document to get.
 
         Returns
@@ -196,14 +190,13 @@ class FirestoreDB:
             - A try-except block is used to handle the possible exception raised if the
               document does not exist.
         """
-        # Get a reference to the document with the given id in the collection
-        # Return None if the document does not exist
         try:
-            return collection.document(id)
-        except:
-            return None
+            return collection.document(doc_id)
+        except ValueError as ve:
+            raise ValueError(f"Error getting document {doc_id}: {ve}") from ve
 
-    def update_document(self, document, data):
+    @staticmethod
+    def update_document(document, data):
         """
         Update the document with the given data and return a reference to it.
 
@@ -230,12 +223,10 @@ class FirestoreDB:
             - The update method of the document reference object is used to update the
               data of the document and return a reference to the updated document.
         """
-        # Update the document with the given data
-        # Return a reference to the document
         return document.update(data)
 
 
-def store_data(stock_data_list: list[StockData], firestore_db: FirestoreDB):
+def store_data(stock_data_list: list[StockData], firestore_db: FirestoreDB) -> None:
     """
     Store the stock price data in the firestore database.
 
@@ -245,6 +236,10 @@ def store_data(stock_data_list: list[StockData], firestore_db: FirestoreDB):
         A list of StockData objects containing the ticker and the stock price data.
     firestore_db: FirestoreDB
         A FirestoreDB object representing the firestore database.
+
+    Returns
+    -------
+    None
 
     Notes
     -----
@@ -267,8 +262,8 @@ def store_data(stock_data_list: list[StockData], firestore_db: FirestoreDB):
     # Iterate over the stock price list
     for stock_data in stock_data_list:
         # Get the ticker and the stock price data
-        ticker = stock_data.ticker
-        stock_price_data = stock_data.stock_price_data
+        ticker: str = stock_data.ticker
+        stock_price_data: list[StockPriceData] = stock_data.stock_price_data
 
         # Check if the ticker collection exists
         # If not, create a new collection
@@ -278,8 +273,8 @@ def store_data(stock_data_list: list[StockData], firestore_db: FirestoreDB):
 
         # Iterate over the stock price data
         for stock_price in stock_price_data:
-            # Get the date
-            date = stock_price.date
+            # Get the date string
+            date: str = stock_price.date
 
             # Use the document path to get the date document
             date_document = firestore_db.document(ticker=ticker, date=date)

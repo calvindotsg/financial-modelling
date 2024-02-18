@@ -1,9 +1,9 @@
-from helpers.read_csv import read_ticker_symbols
-from helpers.firestore_update import FirestoreDB, store_data
-from config.app_config import DATA_PROVIDER, TICKER_SYMBOLS_LIST
-from data_models.stock_price_data import get_stock_data, StockData
-
 import json
+
+from config.app_config import DATA_PROVIDER, TICKER_SYMBOLS_LIST
+from src.main.helpers.read_csv import read_ticker_symbols
+from src.main.helpers.firestore_update import FirestoreDB, store_data
+from src.main.data_models.stock_price_data import get_stock_data, StockData
 
 
 def fetch_stock_data(symbols) -> list[StockData]:

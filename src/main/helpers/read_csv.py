@@ -1,7 +1,7 @@
-import polars as pl
+import pandas as pd
 
 
-def read_ticker_symbols(file_path: str, ticker_column: str) -> list:
+def read_ticker_symbols(file_path: str, ticker_column: str) -> list[str]:
     """
     Read ticker symbols from a CSV file.
 
@@ -32,12 +32,9 @@ def read_ticker_symbols(file_path: str, ticker_column: str) -> list:
 
     """
     # Read the CSV file
-    df = pl.scan_csv(file_path)
-
-    # Materialize the LazyFrame to a DataFrame
-    df = df.collect()
+    df: pd.DataFrame = pd.read_csv(str(file_path))
 
     # Extract the ticker symbols
-    ticker_symbols: list = df[ticker_column].to_list()
+    ticker_symbols: list[str] = df[ticker_column].tolist()
 
     return ticker_symbols

@@ -1,12 +1,26 @@
+from enum import Enum
+
+from typing import Optional, Literal
 from pydantic import BaseModel
-from typing import Optional
 from openbb import obb
 
 import pandas as pd
 
+class ProviderEnum(Enum):
+    """
+    Enumeration of data providers.
+    """
+    FMP: str = 'fmp'
+    INTRINIO: str = 'intrinio'
+    POLYGON: str = 'polygon'
+    TIINGO: str = 'tiingo'
+    YFINANCE: str = 'yfinance'
 
 # Define a Pydantic model for the stock price data
 class StockPriceData(BaseModel):
+    """
+    Pydantic model for representing stock price data.
+    """
     date: str
     closing_price: float
     returns: Optional[float]
@@ -15,18 +29,29 @@ class StockPriceData(BaseModel):
     portfolio_of_1000: Optional[float]
 
     def validation(self):
-        # TODO: Validate the data types and formats
-        # Raise an exception if any validation fails
-        # For example, check if the date is a valid ISO 8601 string
+        """
+        TODO: Validate the data types and formats.
+        
+        Raises
+        ------
+        ValueError
+            If any validation fails.
+        """
         pass
 
     def convert(self):
-        # TODO: Convert the data types and formats as needed
-        # For example, convert the date string to a datetime object
+        """
+        TODO:Convert the data types and formats as needed.
+
+        This method is responsible for converting the data types and formats of the StockPriceData object as needed.
+        For example, it can be used to convert the date string to a datetime object.
+        """
         pass
 
     def to_dict(self):
-        # Return a dictionary representation of the object
+        """
+        Return a dictionary representation of the object.
+        """
         return vars(self)
 
 
@@ -46,7 +71,9 @@ class StockData(BaseModel):
     stock_price_data: list[StockPriceData]
 
 
-def get_stock_data(symbol: str, provider: str, start_date: str, interval: str) -> StockData:
+def get_stock_data(symbol: str,
+                   provider: Literal[ProviderEnum.FMP, ProviderEnum.INTRINIO, ProviderEnum.POLYGON, ProviderEnum.TIINGO, ProviderEnum.YFINANCE],
+                   start_date: str, interval: str) -> StockData:
     """
     Retrieves and processes stock data for a given symbol, provider, start date, and interval.
 
@@ -54,7 +81,7 @@ def get_stock_data(symbol: str, provider: str, start_date: str, interval: str) -
     ----------
     symbol: str
         The stock ticker symbol.
-    provider: str
+    provider: Literal[ProviderEnum.FMP, ProviderEnum.INTRINIO, ProviderEnum.POLYGON, ProviderEnum.TIINGO, ProviderEnum.YFINANCE]
         The data provider.
     start_date: str
         The start date for the data retrieval in 'YYYY-MM-DD' format.
@@ -74,13 +101,14 @@ def get_stock_data(symbol: str, provider: str, start_date: str, interval: str) -
         - The cleaned data is structured into a StockData Pydantic model.
 
     """
-    stock_price = obb.equity.price.historical(symbol=symbol, provider=provider, start_date=start_date,
-                                              interval=interval).to_df()
-    stock_price_clean = clean_stock_price(stock_price)
-    stock_price_data_dict = [
+    stock_price: pd.DataFrame = obb.equity.price.historical(symbol=symbol, provider=provider, start_date=start_date,
+                                                            interval=interval).to_df()
+    stock_price_clean: pd.DataFrame = clean_stock_price(stock_price)
+    stock_price_data_dict: list[StockPriceData] = [
         StockPriceData(**{str(k): v for k, v in data.items()}) for data in stock_price_clean.to_dict("records")
     ]
-    return StockData(ticker=symbol, stock_price_data=stock_price_data_dict)
+    stock_data: StockData = StockData(ticker=symbol, stock_price_data=stock_price_data_dict)
+    return stock_data
 
 
 def clean_stock_price(stock_price: pd.DataFrame) -> pd.DataFrame:
@@ -106,7 +134,7 @@ def clean_stock_price(stock_price: pd.DataFrame) -> pd.DataFrame:
         a hypothetical initial investment of $1000.
 
     """
-    stock_price_clean = stock_price.loc[:, ["close"]]
+    stock_price_clean: pd.DataFrame = stock_price.loc[:, ["close"]]
     stock_price_clean["closing_price"] = stock_price_clean["close"]
     stock_price_clean["date"] = pd.to_datetime(stock_price_clean.index).strftime("%Y-%m-%d %H:%M:%S%z")
     stock_price_clean["returns"] = stock_price_clean["close"].pct_change()
