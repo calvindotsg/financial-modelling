@@ -1,9 +1,8 @@
 from config.app_config import FIRESTORE_SERVICE_ACCOUNT
 from src.main.helpers.firestore_init import firestore_init
-from src.main.data_models.stock_price_data import StockData
+from src.main.data_models.stock_price_data import StockData, StockPriceData
 
 
-# Define the firestore database class
 class FirestoreDB:
     """
     A class to interact with the firestore database.
@@ -30,7 +29,6 @@ class FirestoreDB:
             - The FIRESTORE_SERVICE_ACCOUNT constant from the app config file is used
               to provide the service account credentials.
         """
-        # Initialize the firestore client
         self.db = firestore_init(FIRESTORE_SERVICE_ACCOUNT)
 
     def create_collection(self, name):
@@ -190,8 +188,6 @@ class FirestoreDB:
             - A try-except block is used to handle the possible exception raised if the
               document does not exist.
         """
-        # Get a reference to the document with the given id in the collection
-        # Return None if the document does not exist
         try:
             return collection.document(doc_id)
         except ValueError as ve:
@@ -227,7 +223,7 @@ class FirestoreDB:
         return document.update(data)
 
 
-def store_data(stock_data_list: list[StockData], firestore_db: FirestoreDB):
+def store_data(stock_data_list: list[StockData], firestore_db: FirestoreDB) -> None:
     """
     Store the stock price data in the firestore database.
 
@@ -237,6 +233,10 @@ def store_data(stock_data_list: list[StockData], firestore_db: FirestoreDB):
         A list of StockData objects containing the ticker and the stock price data.
     firestore_db: FirestoreDB
         A FirestoreDB object representing the firestore database.
+
+    Returns
+    -------
+    None
 
     Notes
     -----
@@ -259,8 +259,8 @@ def store_data(stock_data_list: list[StockData], firestore_db: FirestoreDB):
     # Iterate over the stock price list
     for stock_data in stock_data_list:
         # Get the ticker and the stock price data
-        ticker = stock_data.ticker
-        stock_price_data = stock_data.stock_price_data
+        ticker: str = stock_data.ticker
+        stock_price_data: list[StockPriceData] = stock_data.stock_price_data
 
         # Check if the ticker collection exists
         # If not, create a new collection
@@ -270,8 +270,8 @@ def store_data(stock_data_list: list[StockData], firestore_db: FirestoreDB):
 
         # Iterate over the stock price data
         for stock_price in stock_price_data:
-            # Get the date
-            date = stock_price.date
+            # Get the date string
+            date: str = stock_price.date
 
             # Use the document path to get the date document
             date_document = firestore_db.document(ticker=ticker, date=date)
