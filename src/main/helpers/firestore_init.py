@@ -1,3 +1,5 @@
+from typing import Any
+
 import firebase_admin
 from firebase_admin import credentials, firestore
 
@@ -147,6 +149,57 @@ class FirestoreDB:
             return self.db.document(f"{ticker}/{date}")
         except ValueError as ve:
             raise ValueError(f"Error getting document {ticker}/{date}: {ve}") from ve
+
+    def get_most_recent_date(self, ticker: str) -> Any | None:
+        """
+        Return the most recent date of the stock data for a given ticker symbol.
+
+        Parameters
+        ----------
+        ticker : str
+            The stock ticker symbol, e.g. "AAPL" for Apple Inc.
+
+        Returns
+        -------
+        Any | None
+            The most recent date of the stock data in ISO format, e.g. "2024-02-18", or None if the ticker collection is empty.
+
+        Notes
+        -----
+        1. Rationale
+            This method is used to determine the start date for fetching new stock data for a given ticker symbol.
+
+        2. Implementation Details
+            - The method first gets the ticker collection reference from the firestore database object.
+            - Then, it queries the ticker collection for the most recent document by ordering the documents by
+            the date field in descending order and limiting the result to one document.
+            - Next, it checks if the query result is empty. If yes, it returns None.
+            If no, it gets the first document from the result and extracts the date field from the document.
+            - Finally, it returns the date as the output.
+        """
+
+        # Get the ticker collection reference
+        ticker_ref = self.db.collection(ticker)
+
+        # Query the ticker collection for the most recent document
+        query = ticker_ref.order_by("date", direction=firestore.Query.DESCENDING).limit(1)
+
+        # Get the query result
+        result = query.get()
+
+        # Check if the result is empty
+        if len(result) == 0:
+            # Return None
+            return None
+        else:
+            # Get the first document
+            doc = result[0]
+
+            # Get the date field from the document
+            date = doc.get("date")
+
+            # Return the date
+            return date
 
     @staticmethod
     def create_document(collection, doc_id, data):

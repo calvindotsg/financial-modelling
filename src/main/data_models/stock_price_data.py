@@ -4,6 +4,9 @@ from typing import Optional, Literal
 from pydantic import BaseModel
 from openbb import obb
 
+from config.app_config import DATA_PROVIDER
+
+import json
 import pandas as pd
 
 
@@ -77,7 +80,7 @@ def get_stock_data(symbol: str,
                    provider: Literal[
                        ProviderEnum.FMP, ProviderEnum.INTRINIO, ProviderEnum.POLYGON,
                        ProviderEnum.TIINGO, ProviderEnum.YFINANCE],
-                   start_date: str, interval: str) -> StockData:
+                   start_date: str, end_date: str, interval: str) -> StockData:
     """
     Retrieves and processes stock data for a given symbol, provider, start date, and interval.
 
@@ -90,6 +93,8 @@ def get_stock_data(symbol: str,
         The data provider.
     start_date: str
         The start date for the data retrieval in 'YYYY-MM-DD' format.
+    end_date: str
+        The end date for the data retrieval in 'YYYY-MM-DD' format.
     interval: str
         The interval for the stock data (e.g., '1d' = One day, '1W' = One week, '1M' = One month).
 
@@ -107,7 +112,7 @@ def get_stock_data(symbol: str,
 
     """
     stock_price: pd.DataFrame = obb.equity.price.historical(symbol=symbol, provider=provider, start_date=start_date,
-                                                            interval=interval).to_df()
+                                                            end_date=end_date, interval=interval).to_df()
     stock_price_clean: pd.DataFrame = clean_stock_price(stock_price)
     stock_price_data_dict: list[StockPriceData] = [
         StockPriceData(**{str(k): v for k, v in data.items()}) for data in stock_price_clean.to_dict("records")
@@ -154,3 +159,46 @@ def clean_stock_price(stock_price: pd.DataFrame) -> pd.DataFrame:
     )
     stock_price_clean.index = pd.to_datetime(stock_price_clean.index).strftime("%Y-%m-%d %H:%M:%S%z")
     return stock_price_clean
+
+
+def fetch_stock_data(symbol: str, start_date: str, end_date: str) -> StockData:
+    """
+    Fetch stock data for given symbols.
+
+    Parameters
+    ----------
+    symbol : str
+        Ticker symbol to fetch stock data for.
+    start_date: str
+        The start date for the data retrieval in 'YYYY-MM-DD' format.
+    end_date: str
+        The end date for the data retrieval in 'YYYY-MM-DD' format.
+
+    Returns
+    -------
+    StockData
+        Stock data for each ticker symbol, as StockData object
+    """
+    data: StockData = get_stock_data(symbol=symbol, provider=DATA_PROVIDER, start_date=start_date, end_date=end_date,
+                                     interval="1d")
+    return data
+
+
+def log_stock_data(stock_data) -> None:
+    """
+    Print to console stock data for given ticker list.
+
+    Parameters
+    ----------
+    stock_data : StockData
+        stock data to log.
+
+    Returns
+    -------
+    None
+    """
+    # Log stock_ticker_list as a prettified JSON
+    stock_data_json = json.dumps(
+        stock_data.dict(), indent=2
+    )
+    print(stock_data_json)
