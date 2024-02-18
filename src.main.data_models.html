@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="src.main.data_models package" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://model.calvin.sg/src.main.data_models.html" />
+<meta property="og:site_name" content="financial-modelling" />
+<meta property="og:description" content="Submodules: src.main.data_models.stock_price_data module: Module contents:" />
+<meta property="og:image" content="https://github.com/calvindotsg/financial-modelling/blob/main/images/project_banner.jpeg?raw=true" />
+<meta property="og:image:alt" content="financial-modelling" />
+<meta name="description" content="Submodules: src.main.data_models.stock_price_data module: Module contents:" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.main.data_models package &mdash; financial-modelling 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=2709fde1"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="_static/copybutton.js?v=f281be69"></script>
+        <script src="_static/design-tabs.js?v=36754332"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="src.main.helpers package" href="src.main.helpers.html" />
+    <link rel="prev" title="src.main package" href="src.main.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            financial-modelling
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="src.html">src package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="src.main.html">src.main package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="src.main.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.main.html#module-src.main">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">financial-modelling</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">src</a></li>
+          <li class="breadcrumb-item"><a href="src.html">src package</a></li>
+          <li class="breadcrumb-item"><a href="src.main.html">src.main package</a></li>
+      <li class="breadcrumb-item active">src.main.data_models package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/src.main.data_models.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="src-main-data-models-package">
+<h1>src.main.data_models package<a class="headerlink" href="#src-main-data-models-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-src.main.data_models.stock_price_data">
+<span id="src-main-data-models-stock-price-data-module"></span><h2>src.main.data_models.stock_price_data module<a class="headerlink" href="#module-src.main.data_models.stock_price_data" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.main.data_models.stock_price_data.ProviderEnum">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.main.data_models.stock_price_data.</span></span><span class="sig-name descname"><span class="pre">ProviderEnum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/main/data_models/stock_price_data.html#ProviderEnum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.main.data_models.stock_price_data.ProviderEnum" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Enumeration of data providers.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.main.data_models.stock_price_data.ProviderEnum.FMP">
+<span class="sig-name descname"><span class="pre">FMP</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'fmp'</span></em><a class="headerlink" href="#src.main.data_models.stock_price_data.ProviderEnum.FMP" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.main.data_models.stock_price_data.ProviderEnum.INTRINIO">
+<span class="sig-name descname"><span class="pre">INTRINIO</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'intrinio'</span></em><a class="headerlink" href="#src.main.data_models.stock_price_data.ProviderEnum.INTRINIO" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.main.data_models.stock_price_data.ProviderEnum.POLYGON">
+<span class="sig-name descname"><span class="pre">POLYGON</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'polygon'</span></em><a class="headerlink" href="#src.main.data_models.stock_price_data.ProviderEnum.POLYGON" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.main.data_models.stock_price_data.ProviderEnum.TIINGO">
+<span class="sig-name descname"><span class="pre">TIINGO</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'tiingo'</span></em><a class="headerlink" href="#src.main.data_models.stock_price_data.ProviderEnum.TIINGO" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.main.data_models.stock_price_data.ProviderEnum.YFINANCE">
+<span class="sig-name descname"><span class="pre">YFINANCE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'yfinance'</span></em><a class="headerlink" href="#src.main.data_models.stock_price_data.ProviderEnum.YFINANCE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.main.data_models.stock_price_data.StockData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.main.data_models.stock_price_data.</span></span><span class="sig-name descname"><span class="pre">StockData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ticker</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stock_price_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#src.main.data_models.stock_price_data.StockPriceData" title="src.main.data_models.stock_price_data.StockPriceData"><span class="pre">StockPriceData</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/main/data_models/stock_price_data.html#StockData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.main.data_models.stock_price_data.StockData" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>Pydantic model for representing stock data.</p>
+<p class="rubric">Notes</p>
+<ol class="arabic simple">
+<li><dl class="simple">
+<dt>Rationale</dt><dd><p>This Pydantic model defines the structure for representing stock data,
+consisting of a stock ticker symbol and a list of associated stock price data.</p>
+</dd>
+</dl>
+</li>
+</ol>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.main.data_models.stock_price_data.StockData.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#src.main.data_models.stock_price_data.StockData.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.main.data_models.stock_price_data.StockData.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#src.main.data_models.stock_price_data.StockData.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.main.data_models.stock_price_data.StockData.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'stock_price_data':</span> <span class="pre">FieldInfo(annotation=list[StockPriceData],</span> <span class="pre">required=True),</span> <span class="pre">'ticker':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#src.main.data_models.stock_price_data.StockData.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.main.data_models.stock_price_data.StockData.stock_price_data">
+<span class="sig-name descname"><span class="pre">stock_price_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#src.main.data_models.stock_price_data.StockPriceData" title="src.main.data_models.stock_price_data.StockPriceData"><span class="pre">StockPriceData</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#src.main.data_models.stock_price_data.StockData.stock_price_data" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.main.data_models.stock_price_data.StockData.ticker">
+<span class="sig-name descname"><span class="pre">ticker</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#src.main.data_models.stock_price_data.StockData.ticker" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.main.data_models.stock_price_data.StockPriceData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.main.data_models.stock_price_data.</span></span><span class="sig-name descname"><span class="pre">StockPriceData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">closing_price</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">returns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">holding_period_yield</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">holding_period_return</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">portfolio_of_1000</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/main/data_models/stock_price_data.html#StockPriceData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.main.data_models.stock_price_data.StockPriceData" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>Pydantic model for representing stock price data.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.main.data_models.stock_price_data.StockPriceData.closing_price">
+<span class="sig-name descname"><span class="pre">closing_price</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#src.main.data_models.stock_price_data.StockPriceData.closing_price" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.main.data_models.stock_price_data.StockPriceData.convert">
+<span class="sig-name descname"><span class="pre">convert</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/main/data_models/stock_price_data.html#StockPriceData.convert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.main.data_models.stock_price_data.StockPriceData.convert" title="Link to this definition"></a></dt>
+<dd><p>TODO:Convert the data types and formats as needed.</p>
+<p>This method is responsible for converting the data types and formats of the StockPriceData object as needed.
+For example, it can be used to convert the date string to a datetime object.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.main.data_models.stock_price_data.StockPriceData.date">
+<span class="sig-name descname"><span class="pre">date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#src.main.data_models.stock_price_data.StockPriceData.date" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.main.data_models.stock_price_data.StockPriceData.holding_period_return">
+<span class="sig-name descname"><span class="pre">holding_period_return</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#src.main.data_models.stock_price_data.StockPriceData.holding_period_return" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.main.data_models.stock_price_data.StockPriceData.holding_period_yield">
+<span class="sig-name descname"><span class="pre">holding_period_yield</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#src.main.data_models.stock_price_data.StockPriceData.holding_period_yield" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.main.data_models.stock_price_data.StockPriceData.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#src.main.data_models.stock_price_data.StockPriceData.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.main.data_models.stock_price_data.StockPriceData.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#src.main.data_models.stock_price_data.StockPriceData.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.main.data_models.stock_price_data.StockPriceData.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'closing_price':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'date':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True),</span> <span class="pre">'holding_period_return':</span> <span class="pre">FieldInfo(annotation=Union[float,</span> <span class="pre">NoneType],</span> <span class="pre">required=True),</span> <span class="pre">'holding_period_yield':</span> <span class="pre">FieldInfo(annotation=Union[float,</span> <span class="pre">NoneType],</span> <span class="pre">required=True),</span> <span class="pre">'portfolio_of_1000':</span> <span class="pre">FieldInfo(annotation=Union[float,</span> <span class="pre">NoneType],</span> <span class="pre">required=True),</span> <span class="pre">'returns':</span> <span class="pre">FieldInfo(annotation=Union[float,</span> <span class="pre">NoneType],</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#src.main.data_models.stock_price_data.StockPriceData.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.main.data_models.stock_price_data.StockPriceData.portfolio_of_1000">
+<span class="sig-name descname"><span class="pre">portfolio_of_1000</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#src.main.data_models.stock_price_data.StockPriceData.portfolio_of_1000" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.main.data_models.stock_price_data.StockPriceData.returns">
+<span class="sig-name descname"><span class="pre">returns</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#src.main.data_models.stock_price_data.StockPriceData.returns" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.main.data_models.stock_price_data.StockPriceData.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/main/data_models/stock_price_data.html#StockPriceData.to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.main.data_models.stock_price_data.StockPriceData.to_dict" title="Link to this definition"></a></dt>
+<dd><p>Return a dictionary representation of the object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.main.data_models.stock_price_data.StockPriceData.validation">
+<span class="sig-name descname"><span class="pre">validation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/main/data_models/stock_price_data.html#StockPriceData.validation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.main.data_models.stock_price_data.StockPriceData.validation" title="Link to this definition"></a></dt>
+<dd><p>TODO: Validate the data types and formats.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If any validation fails.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.main.data_models.stock_price_data.clean_stock_price">
+<span class="sig-prename descclassname"><span class="pre">src.main.data_models.stock_price_data.</span></span><span class="sig-name descname"><span class="pre">clean_stock_price</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stock_price</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/src/main/data_models/stock_price_data.html#clean_stock_price"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.main.data_models.stock_price_data.clean_stock_price" title="Link to this definition"></a></dt>
+<dd><p>Clean the raw stock price data and enhance it with additional calculated metrics.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>stock_price</strong> (<em>pd.DataFrame</em>) – The raw stock price data.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The cleaned stock price data with additional calculated metrics.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ol class="arabic simple">
+<li><dl class="simple">
+<dt>Rationale</dt><dd><p>This function takes raw stock price data and performs data cleaning operations,
+including selecting relevant columns, calculating returns, and deriving additional
+metrics such as holding period yield, holding period return, and portfolio value based on
+a hypothetical initial investment of $1000.</p>
+</dd>
+</dl>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.main.data_models.stock_price_data.get_stock_data">
+<span class="sig-prename descclassname"><span class="pre">src.main.data_models.stock_price_data.</span></span><span class="sig-name descname"><span class="pre">get_stock_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">provider</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">ProviderEnum.FMP</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ProviderEnum.INTRINIO</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ProviderEnum.POLYGON</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ProviderEnum.TIINGO</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ProviderEnum.YFINANCE</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#src.main.data_models.stock_price_data.StockData" title="src.main.data_models.stock_price_data.StockData"><span class="pre">StockData</span></a></span></span><a class="reference internal" href="_modules/src/main/data_models/stock_price_data.html#get_stock_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.main.data_models.stock_price_data.get_stock_data" title="Link to this definition"></a></dt>
+<dd><p>Retrieves and processes stock data for a given symbol, provider, start date, and interval.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>symbol</strong> (<em>str</em>) – The stock ticker symbol.</p></li>
+<li><p><strong>provider</strong> (<em>Literal</em><em>[</em><em>ProviderEnum.FMP</em><em>, </em><em>ProviderEnum.INTRINIO</em><em>, </em><em>ProviderEnum.POLYGON</em><em>, </em><em>ProviderEnum.TIINGO</em><em>,</em>) – </p></li>
+<li><p><strong>ProviderEnum.YFINANCE</strong><strong>]</strong> – The data provider.</p></li>
+<li><p><strong>start_date</strong> (<em>str</em>) – The start date for the data retrieval in ‘YYYY-MM-DD’ format.</p></li>
+<li><p><strong>interval</strong> (<em>str</em>) – The interval for the stock data (e.g., ‘1d’ = One day, ‘1W’ = One week, ‘1M’ = One month).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A Pydantic model instance containing the stock ticker symbol and a list of cleaned stock price data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#src.main.data_models.stock_price_data.StockData" title="src.main.data_models.stock_price_data.StockData">StockData</a></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ol class="arabic simple">
+<li><dl class="simple">
+<dt>Implementation Details</dt><dd><ul class="simple">
+<li><p>Retrieves historical stock price data from the specified provider for given symbol, start date, and interval.</p></li>
+<li><p>The raw stock price data is cleaned and additional metrics are calculated.</p></li>
+<li><p>The cleaned data is structured into a StockData Pydantic model.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</dd></dl>
+
+</section>
+<section id="module-src.main.data_models">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-src.main.data_models" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="src.main.html" class="btn btn-neutral float-left" title="src.main package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="src.main.helpers.html" class="btn btn-neutral float-right" title="src.main.helpers package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Loh, Calvin and Zeyrek, Genevieve.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

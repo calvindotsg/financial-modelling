@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.main.data_models.stock_price_data &mdash; financial-modelling 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=2709fde1"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            financial-modelling
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">src</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">financial-modelling</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">src.main.data_models.stock_price_data</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for src.main.data_models.stock_price_data</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Literal</span>
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
+<span class="kn">from</span> <span class="nn">openbb</span> <span class="kn">import</span> <span class="n">obb</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+
+<div class="viewcode-block" id="ProviderEnum">
+<a class="viewcode-back" href="../../../../src.main.data_models.html#src.main.data_models.stock_price_data.ProviderEnum">[docs]</a>
+<span class="k">class</span> <span class="nc">ProviderEnum</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Enumeration of data providers.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">FMP</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;fmp&#39;</span>
+    <span class="n">INTRINIO</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;intrinio&#39;</span>
+    <span class="n">POLYGON</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;polygon&#39;</span>
+    <span class="n">TIINGO</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;tiingo&#39;</span>
+    <span class="n">YFINANCE</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;yfinance&#39;</span></div>
+
+
+
+<span class="c1"># Define a Pydantic model for the stock price data</span>
+<div class="viewcode-block" id="StockPriceData">
+<a class="viewcode-back" href="../../../../src.main.data_models.html#src.main.data_models.stock_price_data.StockPriceData">[docs]</a>
+<span class="k">class</span> <span class="nc">StockPriceData</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Pydantic model for representing stock price data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">date</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">closing_price</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">returns</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
+    <span class="n">holding_period_yield</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
+    <span class="n">holding_period_return</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
+    <span class="n">portfolio_of_1000</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
+
+<div class="viewcode-block" id="StockPriceData.validation">
+<a class="viewcode-back" href="../../../../src.main.data_models.html#src.main.data_models.stock_price_data.StockPriceData.validation">[docs]</a>
+    <span class="k">def</span> <span class="nf">validation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        TODO: Validate the data types and formats.</span>
+<span class="sd">        </span>
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If any validation fails.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="StockPriceData.convert">
+<a class="viewcode-back" href="../../../../src.main.data_models.html#src.main.data_models.stock_price_data.StockPriceData.convert">[docs]</a>
+    <span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        TODO:Convert the data types and formats as needed.</span>
+
+<span class="sd">        This method is responsible for converting the data types and formats of the StockPriceData object as needed.</span>
+<span class="sd">        For example, it can be used to convert the date string to a datetime object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="StockPriceData.to_dict">
+<a class="viewcode-back" href="../../../../src.main.data_models.html#src.main.data_models.stock_price_data.StockPriceData.to_dict">[docs]</a>
+    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return a dictionary representation of the object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">vars</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+</div>
+
+
+
+<span class="c1"># Define a Pydantic model for the stock data</span>
+<div class="viewcode-block" id="StockData">
+<a class="viewcode-back" href="../../../../src.main.data_models.html#src.main.data_models.stock_price_data.StockData">[docs]</a>
+<span class="k">class</span> <span class="nc">StockData</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Pydantic model for representing stock data.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    1. Rationale</span>
+<span class="sd">        This Pydantic model defines the structure for representing stock data,</span>
+<span class="sd">        consisting of a stock ticker symbol and a list of associated stock price data.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ticker</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">stock_price_data</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">StockPriceData</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="get_stock_data">
+<a class="viewcode-back" href="../../../../src.main.data_models.html#src.main.data_models.stock_price_data.get_stock_data">[docs]</a>
+<span class="k">def</span> <span class="nf">get_stock_data</span><span class="p">(</span><span class="n">symbol</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                   <span class="n">provider</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span>
+                       <span class="n">ProviderEnum</span><span class="o">.</span><span class="n">FMP</span><span class="p">,</span> <span class="n">ProviderEnum</span><span class="o">.</span><span class="n">INTRINIO</span><span class="p">,</span> <span class="n">ProviderEnum</span><span class="o">.</span><span class="n">POLYGON</span><span class="p">,</span>
+                       <span class="n">ProviderEnum</span><span class="o">.</span><span class="n">TIINGO</span><span class="p">,</span> <span class="n">ProviderEnum</span><span class="o">.</span><span class="n">YFINANCE</span><span class="p">],</span>
+                   <span class="n">start_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">interval</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StockData</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Retrieves and processes stock data for a given symbol, provider, start date, and interval.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    symbol: str</span>
+<span class="sd">        The stock ticker symbol.</span>
+<span class="sd">    provider: Literal[ProviderEnum.FMP, ProviderEnum.INTRINIO, ProviderEnum.POLYGON, ProviderEnum.TIINGO,</span>
+<span class="sd">    ProviderEnum.YFINANCE]</span>
+<span class="sd">        The data provider.</span>
+<span class="sd">    start_date: str</span>
+<span class="sd">        The start date for the data retrieval in &#39;YYYY-MM-DD&#39; format.</span>
+<span class="sd">    interval: str</span>
+<span class="sd">        The interval for the stock data (e.g., &#39;1d&#39; = One day, &#39;1W&#39; = One week, &#39;1M&#39; = One month).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    StockData</span>
+<span class="sd">        A Pydantic model instance containing the stock ticker symbol and a list of cleaned stock price data.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    1. Implementation Details</span>
+<span class="sd">        - Retrieves historical stock price data from the specified provider for given symbol, start date, and interval.</span>
+<span class="sd">        - The raw stock price data is cleaned and additional metrics are calculated.</span>
+<span class="sd">        - The cleaned data is structured into a StockData Pydantic model.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">stock_price</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">=</span> <span class="n">obb</span><span class="o">.</span><span class="n">equity</span><span class="o">.</span><span class="n">price</span><span class="o">.</span><span class="n">historical</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="n">symbol</span><span class="p">,</span> <span class="n">provider</span><span class="o">=</span><span class="n">provider</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span>
+                                                            <span class="n">interval</span><span class="o">=</span><span class="n">interval</span><span class="p">)</span><span class="o">.</span><span class="n">to_df</span><span class="p">()</span>
+    <span class="n">stock_price_clean</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">=</span> <span class="n">clean_stock_price</span><span class="p">(</span><span class="n">stock_price</span><span class="p">)</span>
+    <span class="n">stock_price_data_dict</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">StockPriceData</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">StockPriceData</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">):</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()})</span> <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">stock_price_clean</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s2">&quot;records&quot;</span><span class="p">)</span>
+    <span class="p">]</span>
+    <span class="n">stock_data</span><span class="p">:</span> <span class="n">StockData</span> <span class="o">=</span> <span class="n">StockData</span><span class="p">(</span><span class="n">ticker</span><span class="o">=</span><span class="n">symbol</span><span class="p">,</span> <span class="n">stock_price_data</span><span class="o">=</span><span class="n">stock_price_data_dict</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">stock_data</span></div>
+
+
+
+<div class="viewcode-block" id="clean_stock_price">
+<a class="viewcode-back" href="../../../../src.main.data_models.html#src.main.data_models.stock_price_data.clean_stock_price">[docs]</a>
+<span class="k">def</span> <span class="nf">clean_stock_price</span><span class="p">(</span><span class="n">stock_price</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Clean the raw stock price data and enhance it with additional calculated metrics.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    stock_price: pd.DataFrame</span>
+<span class="sd">        The raw stock price data.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pd.DataFrame</span>
+<span class="sd">        The cleaned stock price data with additional calculated metrics.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    1. Rationale</span>
+<span class="sd">        This function takes raw stock price data and performs data cleaning operations,</span>
+<span class="sd">        including selecting relevant columns, calculating returns, and deriving additional</span>
+<span class="sd">        metrics such as holding period yield, holding period return, and portfolio value based on</span>
+<span class="sd">        a hypothetical initial investment of $1000.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">stock_price_clean</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">=</span> <span class="n">stock_price</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s2">&quot;close&quot;</span><span class="p">]]</span>
+    <span class="n">stock_price_clean</span><span class="p">[</span><span class="s2">&quot;closing_price&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">stock_price_clean</span><span class="p">[</span><span class="s2">&quot;close&quot;</span><span class="p">]</span>
+    <span class="n">stock_price_clean</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">stock_price_clean</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S%z&quot;</span><span class="p">)</span>
+    <span class="n">stock_price_clean</span><span class="p">[</span><span class="s2">&quot;returns&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">stock_price_clean</span><span class="p">[</span><span class="s2">&quot;close&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span>
+    <span class="n">stock_price_clean</span><span class="p">[</span><span class="s2">&quot;holding_period_yield&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">stock_price_clean</span><span class="p">[</span><span class="s2">&quot;close&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">stock_price_clean</span><span class="p">[</span><span class="s2">&quot;close&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="p">)</span>
+    <span class="n">stock_price_clean</span><span class="p">[</span><span class="s2">&quot;holding_period_return&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">stock_price_clean</span><span class="p">[</span>
+                                                     <span class="s2">&quot;close&quot;</span>
+                                                 <span class="p">]</span> <span class="o">/</span> <span class="n">stock_price_clean</span><span class="p">[</span><span class="s2">&quot;close&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">stock_price_clean</span><span class="p">[</span><span class="s2">&quot;portfolio_of_1000&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="mi">1000</span> <span class="o">*</span> <span class="n">stock_price_clean</span><span class="p">[</span><span class="s2">&quot;holding_period_return&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">cumprod</span><span class="p">()</span>
+    <span class="p">)</span>
+    <span class="n">stock_price_clean</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">stock_price_clean</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S%z&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">stock_price_clean</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Loh, Calvin and Zeyrek, Genevieve.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
