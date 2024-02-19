@@ -75,8 +75,9 @@ class StockData(BaseModel):
     stock_price_data: list[StockPriceData]
 
 
-def get_stock_data(symbol: str, provider: Literal[
-    ProviderEnum.FMP, ProviderEnum.INTRINIO, ProviderEnum.POLYGON, ProviderEnum.TIINGO, ProviderEnum.YFINANCE],
+def get_stock_data(symbol: str, provider: Literal[ProviderEnum.FMP: ProviderEnum, ProviderEnum.INTRINIO: ProviderEnum,
+                                                  ProviderEnum.POLYGON: ProviderEnum, ProviderEnum.TIINGO: ProviderEnum,
+                                                  ProviderEnum.YFINANCE: ProviderEnum],
                    start_date: str, end_date: str, interval: str) -> StockData:
     """
     Retrieves and processes stock data for a given symbol, provider, start date, and interval.
