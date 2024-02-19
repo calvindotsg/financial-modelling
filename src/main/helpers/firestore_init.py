@@ -173,9 +173,9 @@ class FirestoreDB:
         2. Implementation Details
             - The method first gets the ticker collection reference from the firestore database object.
             - Then, it queries the ticker collection for the most recent document by ordering the documents by
-            the date field in descending order and limiting the result to one document.
+              the date field in descending order and limiting the result to one document.
             - Next, it checks if the query result is empty. If yes, it returns None.
-            If no, it gets the first document from the result and extracts the date field from the document.
+              If no, it gets the first document from the result and extracts the date field from the document.
             - Finally, it returns the date as the output.
         """
 
