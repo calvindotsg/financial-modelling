@@ -1,13 +1,12 @@
+import json
 from enum import Enum
-
 from typing import Optional, Literal
-from pydantic import BaseModel
+
+import pandas as pd
 from openbb import obb
+from pydantic import BaseModel
 
 from config.app_config import DATA_PROVIDER
-
-import json
-import pandas as pd
 
 
 class ProviderEnum(Enum):
@@ -72,14 +71,12 @@ class StockData(BaseModel):
         consisting of a stock ticker symbol and a list of associated stock price data.
 
     """
-    ticker: str
+    symbol: str
     stock_price_data: list[StockPriceData]
 
 
-def get_stock_data(symbol: str,
-                   provider: Literal[
-                       ProviderEnum.FMP, ProviderEnum.INTRINIO, ProviderEnum.POLYGON,
-                       ProviderEnum.TIINGO, ProviderEnum.YFINANCE],
+def get_stock_data(symbol: str, provider: Literal[
+    ProviderEnum.FMP, ProviderEnum.INTRINIO, ProviderEnum.POLYGON, ProviderEnum.TIINGO, ProviderEnum.YFINANCE],
                    start_date: str, end_date: str, interval: str) -> StockData:
     """
     Retrieves and processes stock data for a given symbol, provider, start date, and interval.
@@ -87,7 +84,7 @@ def get_stock_data(symbol: str,
     Parameters
     ----------
     symbol: str
-        The stock ticker symbol.
+        The stock ticker symbol, e.g. "AAPL" for Apple Inc.
     provider: Literal[ProviderEnum.FMP, ProviderEnum.INTRINIO, ProviderEnum.POLYGON, ProviderEnum.TIINGO,
     ProviderEnum.YFINANCE]
         The data provider.
@@ -114,10 +111,9 @@ def get_stock_data(symbol: str,
     stock_price: pd.DataFrame = obb.equity.price.historical(symbol=symbol, provider=provider, start_date=start_date,
                                                             end_date=end_date, interval=interval).to_df()
     stock_price_clean: pd.DataFrame = clean_stock_price(stock_price)
-    stock_price_data_dict: list[StockPriceData] = [
-        StockPriceData(**{str(k): v for k, v in data.items()}) for data in stock_price_clean.to_dict("records")
-    ]
-    stock_data: StockData = StockData(ticker=symbol, stock_price_data=stock_price_data_dict)
+    stock_price_data_dict: list[StockPriceData] = [StockPriceData(**{str(k): v for k, v in data.items()}) for data in
+                                                   stock_price_clean.to_dict("records")]
+    stock_data: StockData = StockData(symbol=symbol, stock_price_data=stock_price_data_dict)
     return stock_data
 
 
@@ -148,15 +144,9 @@ def clean_stock_price(stock_price: pd.DataFrame) -> pd.DataFrame:
     stock_price_clean["closing_price"] = stock_price_clean["close"]
     stock_price_clean["date"] = pd.to_datetime(stock_price_clean.index).strftime("%Y-%m-%d %H:%M:%S%z")
     stock_price_clean["returns"] = stock_price_clean["close"].pct_change()
-    stock_price_clean["holding_period_yield"] = (
-            stock_price_clean["close"] / stock_price_clean["close"].shift(1) - 1
-    )
-    stock_price_clean["holding_period_return"] = stock_price_clean[
-                                                     "close"
-                                                 ] / stock_price_clean["close"].shift(1)
-    stock_price_clean["portfolio_of_1000"] = (
-            1000 * stock_price_clean["holding_period_return"].cumprod()
-    )
+    stock_price_clean["holding_period_yield"] = (stock_price_clean["close"] / stock_price_clean["close"].shift(1) - 1)
+    stock_price_clean["holding_period_return"] = stock_price_clean["close"] / stock_price_clean["close"].shift(1)
+    stock_price_clean["portfolio_of_1000"] = (1000 * stock_price_clean["holding_period_return"].cumprod())
     stock_price_clean.index = pd.to_datetime(stock_price_clean.index).strftime("%Y-%m-%d %H:%M:%S%z")
     return stock_price_clean
 
@@ -186,7 +176,7 @@ def fetch_stock_data(symbol: str, start_date: str, end_date: str) -> StockData:
 
 def log_stock_data(stock_data) -> None:
     """
-    Print to console stock data for given ticker list.
+    Print to console stock data for given symbol list.
 
     Parameters
     ----------
@@ -198,7 +188,5 @@ def log_stock_data(stock_data) -> None:
     None
     """
     # Log stock_ticker_list as a prettified JSON
-    stock_data_json = json.dumps(
-        stock_data.dict(), indent=2
-    )
+    stock_data_json = json.dumps(stock_data.dict(), indent=2)
     print(stock_data_json)

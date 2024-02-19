@@ -1,7 +1,7 @@
 import datetime
 
-from src.main.helpers.firestore_init import FirestoreDB
 from src.main.data_models.stock_price_data import StockData, StockPriceData, fetch_stock_data, log_stock_data
+from src.main.helpers.firestore_init import FirestoreDB
 
 
 def store_data(stock_data: StockData, firestore_db: FirestoreDB) -> None:
@@ -38,7 +38,7 @@ def store_data(stock_data: StockData, firestore_db: FirestoreDB) -> None:
           or creates a new document with the stock price data.
     """
     # Get the ticker and the stock price data
-    ticker: str = stock_data.ticker
+    ticker: str = stock_data.symbol
     stock_price_data: list[StockPriceData] = stock_data.stock_price_data
 
     # Check if the ticker collection exists
@@ -85,13 +85,12 @@ def process_stock_data(ticker: str, firestore_db: FirestoreDB) -> None:
     1. Rationale
         This function aims to update the stock data for a given ticker symbol in firestore, used for further analysis
 
-    2. Implementation Details
-        - The function first checks if the ticker collection exists in firestore.
-        - If not, it creates a new collection for the ticker and sets the start date to an arbitrary date.
-        - If yes, it gets the most recent date of the existing data and sets it as the start date.
-        - Then, it sets the end date to the current date and fetches the stock data for the ticker and the date range,
-        using OpenBB external API with yfinance data source.
-        - Next, it logs the stock data using a custom logger function. Finally, it stores the data in firestore using a custom store function.
+    2. Implementation Details - The function first checks if the ticker collection exists in firestore. - If not,
+    it creates a new collection for the ticker and sets the start date to an arbitrary date. - If yes, it gets the
+    most recent date of the existing data and sets it as the start date. - Then, it sets the end date to the current
+    date and fetches the stock data for the ticker and the date range, using OpenBB external API with yfinance data
+    source. - Next, it logs the stock data using a custom logger function. Finally, it stores the data in firestore
+    using a custom store function.
     """
     # Check if the ticker collection exists in firestore
     collection = firestore_db.get_collection(ticker)

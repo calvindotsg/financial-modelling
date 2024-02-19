@@ -162,7 +162,8 @@ class FirestoreDB:
         Returns
         -------
         Any | None
-            The most recent date of the stock data in ISO format, e.g. "2024-02-18", or None if the ticker collection is empty.
+            The most recent date of the stock data in ISO format, e.g. "2024-02-18",
+            or None if the ticker collection is empty.
 
         Notes
         -----

@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-def read_ticker_symbols(file_path: str, ticker_column: str) -> list[str]:
+def read_ticker_symbols(file_path: str, symbol_column: str) -> list[str]:
     """
     Read ticker symbols from a CSV file.
 
@@ -9,7 +9,7 @@ def read_ticker_symbols(file_path: str, ticker_column: str) -> list[str]:
     ----------
     file_path: str
         The path to the CSV file.
-    ticker_column: str
+    symbol_column: str
         The header of the column containing the ticker symbols.
 
     Returns
@@ -35,6 +35,6 @@ def read_ticker_symbols(file_path: str, ticker_column: str) -> list[str]:
     df: pd.DataFrame = pd.read_csv(str(file_path))
 
     # Extract the ticker symbols
-    ticker_symbols: list[str] = df[ticker_column].tolist()
+    ticker_symbols: list[str] = df[symbol_column].tolist()
 
     return ticker_symbols
