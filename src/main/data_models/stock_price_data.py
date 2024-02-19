@@ -1,10 +1,12 @@
+import json
 from enum import Enum
-
 from typing import Optional, Literal
-from pydantic import BaseModel
-from openbb import obb
 
 import pandas as pd
+from openbb import obb
+from pydantic import BaseModel
+
+from config.app_config import DATA_PROVIDER
 
 
 class ProviderEnum(Enum):
@@ -69,27 +71,28 @@ class StockData(BaseModel):
         consisting of a stock ticker symbol and a list of associated stock price data.
 
     """
-    ticker: str
+    symbol: str
     stock_price_data: list[StockPriceData]
 
 
-def get_stock_data(symbol: str,
-                   provider: Literal[
-                       ProviderEnum.FMP, ProviderEnum.INTRINIO, ProviderEnum.POLYGON,
-                       ProviderEnum.TIINGO, ProviderEnum.YFINANCE],
-                   start_date: str, interval: str) -> StockData:
+def get_stock_data(symbol: str, provider: Literal[ProviderEnum.FMP: ProviderEnum, ProviderEnum.INTRINIO: ProviderEnum,
+                                                  ProviderEnum.POLYGON: ProviderEnum, ProviderEnum.TIINGO: ProviderEnum,
+                                                  ProviderEnum.YFINANCE: ProviderEnum],
+                   start_date: str, end_date: str, interval: str) -> StockData:
     """
     Retrieves and processes stock data for a given symbol, provider, start date, and interval.
 
     Parameters
     ----------
     symbol: str
-        The stock ticker symbol.
+        The stock ticker symbol, e.g. "AAPL" for Apple Inc.
     provider: Literal[ProviderEnum.FMP, ProviderEnum.INTRINIO, ProviderEnum.POLYGON, ProviderEnum.TIINGO,
     ProviderEnum.YFINANCE]
         The data provider.
     start_date: str
         The start date for the data retrieval in 'YYYY-MM-DD' format.
+    end_date: str
+        The end date for the data retrieval in 'YYYY-MM-DD' format.
     interval: str
         The interval for the stock data (e.g., '1d' = One day, '1W' = One week, '1M' = One month).
 
@@ -107,12 +110,11 @@ def get_stock_data(symbol: str,
 
     """
     stock_price: pd.DataFrame = obb.equity.price.historical(symbol=symbol, provider=provider, start_date=start_date,
-                                                            interval=interval).to_df()
+                                                            end_date=end_date, interval=interval).to_df()
     stock_price_clean: pd.DataFrame = clean_stock_price(stock_price)
-    stock_price_data_dict: list[StockPriceData] = [
-        StockPriceData(**{str(k): v for k, v in data.items()}) for data in stock_price_clean.to_dict("records")
-    ]
-    stock_data: StockData = StockData(ticker=symbol, stock_price_data=stock_price_data_dict)
+    stock_price_data_dict: list[StockPriceData] = [StockPriceData(**{str(k): v for k, v in data.items()}) for data in
+                                                   stock_price_clean.to_dict("records")]
+    stock_data: StockData = StockData(symbol=symbol, stock_price_data=stock_price_data_dict)
     return stock_data
 
 
@@ -143,14 +145,49 @@ def clean_stock_price(stock_price: pd.DataFrame) -> pd.DataFrame:
     stock_price_clean["closing_price"] = stock_price_clean["close"]
     stock_price_clean["date"] = pd.to_datetime(stock_price_clean.index).strftime("%Y-%m-%d %H:%M:%S%z")
     stock_price_clean["returns"] = stock_price_clean["close"].pct_change()
-    stock_price_clean["holding_period_yield"] = (
-            stock_price_clean["close"] / stock_price_clean["close"].shift(1) - 1
-    )
-    stock_price_clean["holding_period_return"] = stock_price_clean[
-                                                     "close"
-                                                 ] / stock_price_clean["close"].shift(1)
-    stock_price_clean["portfolio_of_1000"] = (
-            1000 * stock_price_clean["holding_period_return"].cumprod()
-    )
+    stock_price_clean["holding_period_yield"] = (stock_price_clean["close"] / stock_price_clean["close"].shift(1) - 1)
+    stock_price_clean["holding_period_return"] = stock_price_clean["close"] / stock_price_clean["close"].shift(1)
+    stock_price_clean["portfolio_of_1000"] = (1000 * stock_price_clean["holding_period_return"].cumprod())
     stock_price_clean.index = pd.to_datetime(stock_price_clean.index).strftime("%Y-%m-%d %H:%M:%S%z")
     return stock_price_clean
+
+
+def fetch_stock_data(symbol: str, start_date: str, end_date: str) -> StockData:
+    """
+    Fetch stock data for given symbols.
+
+    Parameters
+    ----------
+    symbol : str
+        Ticker symbol to fetch stock data for.
+    start_date: str
+        The start date for the data retrieval in 'YYYY-MM-DD' format.
+    end_date: str
+        The end date for the data retrieval in 'YYYY-MM-DD' format.
+
+    Returns
+    -------
+    StockData
+        Stock data for each ticker symbol, as StockData object
+    """
+    data: StockData = get_stock_data(symbol=symbol, provider=DATA_PROVIDER, start_date=start_date, end_date=end_date,
+                                     interval="1d")
+    return data
+
+
+def log_stock_data(stock_data) -> None:
+    """
+    Print to console stock data for given symbol list.
+
+    Parameters
+    ----------
+    stock_data : StockData
+        stock data to log.
+
+    Returns
+    -------
+    None
+    """
+    # Log stock_ticker_list as a prettified JSON
+    stock_data_json = json.dumps(stock_data.dict(), indent=2)
+    print(stock_data_json)

@@ -52,6 +52,16 @@ The key implementation and rationale of the financial-modelling project are:
 - Data Processing: The retrieved data is cleaned and processed to calculate various metrics like closing price, percentage change, holding period yield, holding period return, and portfolio value assuming an initial investment of $1000.
 - Main Execution: The main block of the notebook orchestrates the reading of ticker symbols and the retrieval of stock data for each symbol. The results are then appended to a list and printed in JSON format.
 
+CI/CD Overview
+==============
+
+This project retrieves, cleans, and analyzes historical stock data. The project adopts the following CI/CD features to ensure code and documentation quality and reliability:
+
+- **Static code analysis with Qodana by JetBrains**: This tool checks and improves the code that performs the data retrieval, processing, and analysis of stock data. This includes suggestions to improve upon code quality, security, and duplication issues. The project follows strict type annotations and PEP 8 coding style conventions.
+- **Project and source code documentation with Sphinx and numpy style docstrings**: This documentation explains the purpose, logic, and implementation of data handling and analysis in various modules. It uses Sphinx to generate HTML documentation from docstrings in a standard format for scientific and numerical projects.
+- **Sphinx build hosting with GitHub Pages and Cloudflare CDN**: This feature makes the documentation accessible and available for users and developers who want to learn more about this project and its results. It hosts static websites from this GitHub repository and uses a custom domain: `https://model.calvin.sg` to deliver web content faster and more securely.
+- **Workflow automation and configuration management with GitHub Actions and Infrastructure as Code**: This feature manages and automates the CI/CD workflows and ensures that the code and documentation are always in sync with the latest changes. It uses GitHub Actions to run the static code analysis tool and deploy the Sphinx build onto GitHub Pages.
+
 
 Getting started
 ---------------
